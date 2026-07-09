@@ -143,11 +143,13 @@ body, html {
   .play-button-overlay {
     top: 71.5%; /* Nudged slightly back up */
     transform: translate(-50%, -50%);
+    flex-direction: column-reverse;
   }
 
   .play-button-img {
     width: 350px; /* Even more massive size for desktop */
-    margin-bottom: 30px;
+    margin-bottom: 0;
+    margin-top: 30px;
   }
   
   .play-button-text {
