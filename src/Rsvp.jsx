@@ -55,9 +55,9 @@ const Rsvp = () => {
         setSliderPosition(maxSlide);
         setIsDragging(false);
         
-        // Open the Google Form link after a short delay so they see the success state
+        // Redirect to the Google Form link after a short delay so they see the success state
         setTimeout(() => {
-          window.open('https://forms.gle/ZiFMAbFkizhUk3xF9', '_blank');
+          window.location.href = 'https://forms.gle/ZiFMAbFkizhUk3xF9';
         }, 500);
       }
     }
