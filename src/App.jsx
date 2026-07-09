@@ -226,15 +226,15 @@ export default function App() {
         
         {/* Rich Array of Animated Hanging Decor */}
         <HangingLantern className="hanging-decor hanging-pos-1" length={220} delay="0s" duration="4.5s" />
-        <HangingSparkle className="hanging-decor hanging-pos-2" length={140} delay="-1s" duration="3.2s" />
+        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-2" length={140} delay="-1s" duration="3.2s" />}
         <HangingDiamond className="hanging-decor hanging-pos-3" length={170} delay="-2.5s" duration="3.8s" />
         
         {/* Shorter sparkles near the center arch */}
-        <HangingSparkle className="hanging-decor hanging-pos-4" length={90} delay="-0.5s" duration="2.9s" />
-        <HangingSparkle className="hanging-decor hanging-pos-5" length={100} delay="-1.5s" duration="3.1s" />
+        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-4" length={90} delay="-0.5s" duration="2.9s" />}
+        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-5" length={100} delay="-1.5s" duration="3.1s" />}
 
         <HangingDiamond className="hanging-decor hanging-pos-6" length={180} delay="-1.2s" duration="4.1s" />
-        <HangingSparkle className="hanging-decor hanging-pos-7" length={130} delay="-0.8s" duration="3.4s" />
+        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-7" length={130} delay="-0.8s" duration="3.4s" />}
         <HangingLantern className="hanging-decor hanging-pos-8" length={240} delay="-2s" duration="4.8s" />
 
         <div className="frame-container">

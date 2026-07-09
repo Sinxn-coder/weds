@@ -60,7 +60,9 @@ const Gift = () => {
             <div className="gift-envelope-flap-bottom"></div>
 
             {/* Floral decoration on the right of the envelope */}
-            <img src={flowerImg} alt="Flower Decoration" className="gift-flower" />
+            {!window.matchMedia('(max-width: 768px)').matches && (
+              <img src={flowerImg} alt="Flower Decoration" className="gift-flower" />
+            )}
           </div>
         </div>
       </div>
