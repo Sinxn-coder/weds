@@ -141,18 +141,19 @@ body, html {
 /* Desktop sizing */
 @media (min-width: 769px) {
   .play-button-overlay {
-    top: 71.5%; /* Nudged slightly back up */
+    top: 67.5%; /* Adjusted top to perfectly preserve the button image's absolute position on screen */
     transform: translate(-50%, -50%);
-    flex-direction: column-reverse;
   }
 
   .play-button-img {
     width: 350px; /* Even more massive size for desktop */
-    margin-bottom: 0;
-    margin-top: 30px;
+    margin-bottom: 0; /* Remove bottom margin since text is no longer below */
   }
   
   .play-button-text {
+    position: absolute;
+    bottom: 100%; /* Place text exactly above the image container */
+    margin-bottom: 30px; /* Add the 30px gap above the image */
     font-size: 3.5rem; /* Even huger text for desktop */
     letter-spacing: 6px;
   }
