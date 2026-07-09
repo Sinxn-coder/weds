@@ -1,0 +1,246 @@
+/* Import a classic serif font if not already available. 
+   We use 'Cinzel' or 'Playfair Display' for that elegant look. */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+.countdown-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fcf8f2; /* Soft lighter beige to differentiate from the main background */
+  font-family: 'Cinzel', serif;
+  color: #6b1e22;
+  margin-top: 50px;
+  position: relative; /* needed for absolute child positioning */
+}
+
+.countdown-flower-right {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 95%;
+  object-fit: contain;
+  pointer-events: none;
+  clip-path: inset(100% 0 0 0);
+  opacity: 0.01;
+  transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0s;
+}
+
+.countdown-flower-left {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+  height: 95%;
+  object-fit: contain;
+  pointer-events: none;
+  clip-path: inset(100% 0 0 0);
+  opacity: 0.01;
+  transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0s;
+}
+
+/* Base animated visible state (applies to both desktop and mobile) */
+.countdown-flower-right.is-visible,
+.countdown-flower-left.is-visible {
+  clip-path: inset(0 0 0 0);
+  opacity: 0.95;
+}
+
+.monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.monogram > span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.monogram.is-visible .monogram-letter-j {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.monogram.is-visible .monogram-ampersand {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.monogram.is-visible .monogram-letter-a {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+.monogram-letter {
+  font-family: "the-seasons", serif;
+  font-size: 8rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.monogram-letter-j {
+  transform: translateY(-40px); /* Move the J slightly up */
+}
+
+.monogram-letter-a {
+  transform: translateY(15px); /* Move the A slightly down */
+}
+
+.monogram-ampersand {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0 10px;
+  transform: translateY(-20px); /* Move the ampersand slightly up */
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15px;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+}
+
+.rolling-number {
+  display: flex;
+  font-size: 5rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+/* The drum container per digit */
+.drum-digit {
+  display: inline-block;
+  position: relative;
+  height: 1em;
+  width: 0.62em;
+  perspective: 300px;       /* Creates the 3D depth */
+  overflow: hidden;
+}
+
+/* Both faces of the drum */
+.drum-face {
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 1em;
+  height: 1em;
+  top: 0;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+}
+
+/* The face currently showing — rotates backward (top goes away) */
+.drum-top.spin-out {
+  animation: drumOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* The new face rolling in from the bottom */
+.drum-bottom.spin-in {
+  transform-origin: center top;
+  animation: drumIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes drumOut {
+  from { transform: rotateX(0deg);   opacity: 1; }
+  to   { transform: rotateX(-90deg); opacity: 0; }
+}
+
+@keyframes drumIn {
+  from { transform: rotateX(90deg);  opacity: 0; }
+  to   { transform: rotateX(0deg);   opacity: 1; }
+}
+
+.countdown-label {
+  font-size: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  margin-top: 10px;
+  text-transform: capitalize;
+  color: #6b1e22;
+}
+
+.countdown-separator {
+  font-size: 5rem;
+  line-height: 0.9;
+  font-weight: 400;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .monogram-letter {
+    font-size: 5rem;
+  }
+  
+  .monogram-ampersand {
+    font-size: 2.5rem;
+    transform: translateY(-10px);
+  }
+  
+  .countdown-timer {
+    gap: 5px;
+  }
+  
+  .countdown-item {
+    width: 60px;
+  }
+  
+  .rolling-number {
+    font-size: 3rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.9rem;
+  }
+  
+  .countdown-separator {
+    font-size: 3rem;
+  }
+
+  /* Flowers: reveal from the side using a slow clip-path wipe */
+  .countdown-flower-right {
+    right: auto;
+    left: 40%;
+    top: 10px;
+    transform: translateX(-50%) rotate(90deg) scaleX(-1);
+    /* Rotated 90deg, so clipping the 'top' clips the screen's 'right' side */
+    clip-path: inset(100% 0 0 0);
+    opacity: 0.01;
+    transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0s;
+    height: auto;
+    width: 30%;
+  }
+
+  .countdown-flower-left {
+    left: auto;
+    right: 40%;
+    top: auto;
+    bottom: 10px;
+    transform: translateX(50%) scaleX(-1) rotate(90deg);
+    /* Flipped and rotated, clipping the 'left' clips the screen's 'right' side */
+    clip-path: inset(0 0 0 100%);
+    opacity: 0.01;
+    transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0s;
+    height: auto;
+    width: 30%;
+  }
+}

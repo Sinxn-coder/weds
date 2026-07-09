@@ -1,0 +1,235 @@
+@font-face {
+  font-family: 'CitadelScript';
+  src: url('./assets/CitadelScriptStd.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.gift-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #6d6a40; /* Olive/khaki green solid background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+.gift-content-split {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1100px;
+  gap: 40px;
+}
+
+/* Staggered slide-up animations */
+.gift-title,
+.gift-subtitle,
+.gift-text-spaced,
+.gift-text-group {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gift-content-split.is-visible .gift-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.gift-content-split.is-visible .gift-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.gift-content-split.is-visible .gift-text-spaced {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+.gift-content-split.is-visible .gift-text-group {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
+}
+
+/* Left Side Styles */
+.gift-left {
+  flex: 1;
+  text-align: left;
+}
+
+.gift-title {
+  font-family: 'CitadelScript', cursive;
+  font-size: 7rem;
+  color: #fff;
+  margin: 0;
+  line-height: 0.9;
+  font-weight: normal;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); /* Slight shadow to match depth */
+}
+
+.gift-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 5px 0 0 5px; /* Tightly tucked under the cursive */
+  letter-spacing: 2px;
+}
+
+/* Right Side Styles */
+.gift-right {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.gift-envelope {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gift-envelope-back, 
+.gift-envelope-flap-left, 
+.gift-envelope-flap-bottom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 115%;
+  border-radius: 4px;
+  pointer-events: none; /* so they don't block interaction with the card */
+}
+
+.gift-envelope-back {
+  background-color: #f2f2f2;
+  transform: translate(-50%, -50%) rotate(8deg);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  z-index: 1;
+}
+
+.gift-envelope-flap-left {
+  background-color: #e8e8e8; /* slightly darker to distinguish the fold */
+  transform: translate(-50%, -50%) rotate(8deg);
+  clip-path: polygon(0 0, 40% 50%, 0 100%);
+  z-index: 1;
+}
+
+.gift-envelope-flap-bottom {
+  background-color: #ebebeb; 
+  transform: translate(-50%, -50%) rotate(8deg);
+  clip-path: polygon(0 100%, 50% 60%, 100% 100%);
+  z-index: 1;
+}
+
+.gift-card {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  padding: 60px 40px 60px 70px; /* Extra left padding so text clears the left flap */
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  z-index: 2;
+  transform: translateX(10px); /* Slide out of the envelope slightly */
+}
+
+.gift-text {
+  font-family: 'Cinzel', serif; 
+  font-size: 0.8rem;
+  color: #6d6a40; /* Text matches the background color */
+  line-height: 2.4;
+  letter-spacing: 2px;
+}
+
+.gift-text-spaced {
+  margin-bottom: 40px;
+}
+
+.gift-text p {
+  margin: 0;
+}
+
+/* Floral decoration */
+.gift-flower {
+  position: absolute;
+  right: -240px; /* Moved even further to the right */
+  top: 50%;
+  transform: translateY(-50%);
+  height: 120%;
+  width: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  .gift-section {
+    padding: 60px 0;
+  }
+  .gift-content-split {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  .gift-left {
+    text-align: center;
+    padding: 0 15px;
+  }
+  .gift-title { 
+    font-size: 4.5rem; 
+    line-height: 1.1; /* Prevent overlapping when it wraps on small screens */
+    top: 0;
+    margin-bottom: 15px;
+  }
+  .gift-subtitle { 
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  
+  .gift-right {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .gift-envelope {
+    width: 90%;
+    max-width: 380px;
+  }
+  
+  .gift-envelope-back, 
+  .gift-envelope-flap-left, 
+  .gift-envelope-flap-bottom {
+    width: 110%;
+    height: 110%;
+  }
+  
+  .gift-card { 
+    padding: 40px 20px 40px 35px; /* Adjust padding for mobile */
+    width: 100%;
+    transform: translateX(5px);
+  }
+  
+  .gift-text {
+    font-size: 0.7rem;
+    line-height: 2.2;
+  }
+  
+  .gift-flower {
+    display: none; /* Hide the flower on mobile so it doesn't break the layout or get cut off */
+  }
+}

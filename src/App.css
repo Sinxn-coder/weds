@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0d0a0b; /* Very dark elegant background */
+  font-family: 'Playfair Display', serif;
+  color: #d4af37;
+}
+
+.wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loading-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.loader {
+  border: 4px solid #33261a;
+  border-top: 4px solid #d4af37;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animation-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.opening-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the canvas fills the viewport */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.opening-canvas.slideUp {
+  /* No longer sliding up, handled by white glow */
+}
+
+.after-animation-screen {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #f6ebdf;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 15; /* Sits above canvas (10) */
+  opacity: 1; /* Always visible, masked until ready */
+  pointer-events: none;
+  
+  /* Gold glowing border for the heart */
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
+
+  /* Heart Mask */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 0vmax;
+  mask-size: 0vmax;
+  transition: -webkit-mask-size 1.5s cubic-bezier(0.76, 0, 0.24, 1), mask-size 1.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.play-button-overlay {
+  position: absolute;
+  top: 56%; /* Nudged slightly back up for mobile */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Base sizes (Mobile) */
+.play-button-img {
+  width: 200px; /* Increased size further for mobile */
+  height: auto;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+  transition: transform 0.3s ease; 
+  animation: tinyPulse 3s infinite ease-in-out;
+}
+
+@keyframes tinyPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); } /* Increased pulse magnitude slightly */
+  100% { transform: scale(1); }
+}
+
+.play-button-text {
+  font-family: 'Cinzel', serif;
+  color: #d4af37; /* Changed to golden */
+  font-size: 1.4rem; 
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  margin: 0;
+}
+
+/* Desktop sizing */
+@media (min-width: 769px) {
+  .play-button-overlay {
+    top: 71.5%; /* Nudged slightly back up */
+    transform: translate(-50%, -50%);
+  }
+
+  .play-button-img {
+    width: 350px; /* Even more massive size for desktop */
+    margin-bottom: 30px;
+  }
+  
+  .play-button-text {
+    font-size: 3.5rem; /* Even huger text for desktop */
+    letter-spacing: 6px;
+  }
+}
+
+.after-animation-screen.visible {
+  pointer-events: all;
+  -webkit-mask-size: 300vmax;
+  mask-size: 300vmax;
+}
+
+.frame-container {
+  position: relative;
+  width: calc(100% - 4rem);
+  max-width: 1200px;
+  margin: 2rem auto;
+  transform: translateY(50vh);
+  opacity: 0;
+}
+
+.after-animation-screen.visible .frame-container {
+  animation: slideUpFrame 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 0.75s;
+}
+
+.frame-inner-image {
+  position: absolute;
+  top: 47%; /* Shifted up slightly from 50% */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; /* Decreased further */
+  height: 90%; /* Decreased further */
+  object-fit: contain; /* ensures the image is not cut at all */
+  z-index: 1;
+}
+
+.invited-image {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, 100px);
+  width: 50%;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Desktop: slide up on scroll via IntersectionObserver */
+.invited-image.invited-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.frame-one-image {
+  position: relative;
+  width: 100%;
+  height: 200vh;
+  object-fit: cover;
+  display: block;
+  z-index: 2;
+}
+
+.main-flower-image {
+  position: absolute;
+  bottom: 0;
+  left: -5%; /* Hangs slightly off the left edge */
+  height: 65%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Side Polaroid Photos */
+.side-photos-container {
+  position: absolute;
+  top: 75%;
+  right: 2%;
+  transform: translateY(-50%);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 12px 12px 18px 12px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  width: 290px;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.polaroid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.polaroid-1 {
+  transform: translateY(100px) rotate(5deg);
+  position: relative;
+  z-index: 2;
+  margin-bottom: -40px;
+}
+
+.polaroid-2 {
+  transform: translateY(100px) rotate(-3deg) translateX(-10px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Desktop: float up fade in */
+.side-photos-container.is-visible .polaroid-1 {
+  opacity: 1;
+  transform: translateY(0) rotate(5deg);
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0s;
+}
+
+.side-photos-container.is-visible .polaroid-2 {
+  opacity: 1;
+  transform: translateY(0) rotate(-3deg) translateX(-10px);
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0.2s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+}
+
+/* Hanging Animated Decor */
+.hanging-decor {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  transform-origin: top center;
+  animation: swing 4s ease-in-out infinite alternate;
+}
+
+.hanging-pos-1 { left: 3%; }
+.hanging-pos-2 { left: 15%; }
+.hanging-pos-3 { left: 28%; }
+.hanging-pos-4 { left: 40%; }
+.hanging-pos-5 { right: 40%; }
+.hanging-pos-6 { right: 28%; }
+.hanging-pos-7 { right: 15%; }
+.hanging-pos-8 { right: 3%; }
+
+@keyframes swing {
+  0% { transform: rotate(-6deg); }
+  100% { transform: rotate(6deg); }
+}
+
+@keyframes slideUpFrame {
+  from {
+    transform: translateY(50vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .frame-container {
+    width: 95%;
+    margin: 12.5rem auto 1rem auto; /* Moved very, very slightly further down on mobile */
+  }
+  
+  .frame-one-image {
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Mobile: invited image slides up on a timer after frame finishes */
+  .invited-image {
+    transition: none;
+  }
+
+  .after-animation-screen.visible .invited-image {
+    animation: slideUpInvited 0.9s cubic-bezier(0.25, 1, 0.5, 1) 1.75s both;
+  }
+
+  @keyframes slideUpInvited {
+    from { opacity: 0; transform: translate(-50%, 100px); }
+    to   { opacity: 1; transform: translate(-50%, -50%); }
+  }
+  
+  .main-flower-image {
+    height: 50%; /* Increased size slightly */
+    left: -5%; /* Shifted right slightly */
+  }
+
+  .side-photos-container {
+    right: 5%;
+    top: 80%;
+    transform: translateY(-50%) scale(0.35);
+    transform-origin: right center;
+    visibility: hidden;
+  }
+
+  .side-photos-container.is-visible {
+    visibility: visible;
+  }
+
+  /* Reset polaroid base state for mobile — no !important so animations can override */
+  .polaroid-1 {
+    opacity: 0;
+    transform: translateX(120%) rotate(5deg);
+    transition: none;
+  }
+
+  .polaroid-2 {
+    opacity: 0;
+    transform: translateY(80%) rotate(-3deg) translateX(-10px);
+    transition: none;
+  }
+
+  @keyframes slideInFromRight {
+    from { opacity: 0; transform: translateX(120%) rotate(5deg); }
+    to   { opacity: 1; transform: translateX(0) rotate(5deg); }
+  }
+
+  @keyframes slideInFromBottom {
+    from { opacity: 0; transform: translateY(80%) rotate(-3deg) translateX(-10px); }
+    to   { opacity: 1; transform: translateY(0) rotate(-3deg) translateX(-10px); }
+  }
+
+  /* img2 slides in from right immediately when container becomes visible */
+  .side-photos-container.is-visible .polaroid-1 {
+    animation: slideInFromRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0s forwards;
+    transition: none;
+  }
+
+  /* img3 slides up from bottom only after img2 fully finishes (0.8s) */
+  .side-photos-container.is-visible .polaroid-2 {
+    animation: slideInFromBottom 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.8s both;
+    transition: none;
+  }
+
+  /* Hanging decor on mobile */
+  .hanging-decor { top: -75px !important; }
+  .hanging-pos-4, .hanging-pos-5, .hanging-pos-2, .hanging-pos-7 { display: none; }
+  .hanging-pos-1 { left: 0%; }
+  .hanging-pos-3 { left: 25%; }
+  .hanging-pos-6 { right: 25%; }
+  .hanging-pos-8 { right: 0%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
