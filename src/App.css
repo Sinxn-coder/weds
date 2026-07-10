@@ -112,30 +112,16 @@ body, html {
   top: 0;
   left: 0;
   z-index: 15; /* Sits above canvas (10) */
-  opacity: 1; /* Always visible, masked until ready */
+  opacity: 1; /* Always visible, sits underneath canvas */
   pointer-events: none;
-  
-  /* Gold glowing border for the heart */
-  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
-
-  /* Heart Mask */
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-size: 0vmax;
-  mask-size: 0vmax;
-  transition: -webkit-mask-size 1.5s cubic-bezier(0.76, 0, 0.24, 1), mask-size 1.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .play-button-overlay {
   position: absolute;
-  top: 56%; /* Nudged slightly back up for mobile */
+  top: 52%; /* Nudged down very slightly for mobile */
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  z-index: 30; /* Increased to stay above everything */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -159,41 +145,23 @@ body, html {
   100% { transform: scale(1); }
 }
 
-.play-button-text {
-  font-family: 'Cinzel', serif;
-  color: #d4af37; /* Changed to golden */
-  font-size: 1.4rem; 
-  letter-spacing: 3px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  margin: 0;
-  white-space: nowrap;
-}
+
 
 /* Desktop sizing */
 @media (min-width: 769px) {
   .play-button-overlay {
-    top: 67.5%; /* Adjusted top to perfectly preserve the button image's absolute position on screen */
+    top: 55%; /* Nudged up slightly more for desktop */
     transform: translate(-50%, -50%);
   }
 
   .play-button-img {
-    width: 350px; /* Even more massive size for desktop */
+    width: 375px; /* Slightly larger size for desktop */
     margin-bottom: 0; /* Remove bottom margin since text is no longer below */
-  }
-  
-  .play-button-text {
-    position: absolute;
-    bottom: 100%; /* Place text exactly above the image container */
-    margin-bottom: 30px; /* Add the 30px gap above the image */
-    font-size: 3.5rem; /* Even huger text for desktop */
-    letter-spacing: 6px;
   }
 }
 
 .after-animation-screen.visible {
   pointer-events: all;
-  -webkit-mask-size: 300vmax;
-  mask-size: 300vmax;
 }
 
 .frame-container {
@@ -247,6 +215,23 @@ body, html {
   object-fit: cover;
   display: block;
   z-index: 2;
+}
+
+.frame-seal-image {
+  position: absolute;
+  bottom: calc(15% - 5px); /* Nudged down slightly for mobile */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px; /* Reduced size even further for mobile */
+  z-index: 10;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+
+@media (min-width: 769px) {
+  .frame-seal-image {
+    width: 250px;
+    bottom: calc(15% - 5px); /* Nudged down exactly 5px for desktop */
+  }
 }
 
 .main-flower-image {

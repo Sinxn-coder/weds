@@ -25,6 +25,14 @@
   opacity: 1;
 }
 
+.reception-video::-webkit-media-controls {
+  display: none !important;
+}
+
+.reception-video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
 .reception-overlay {
   position: absolute;
   top: 0;

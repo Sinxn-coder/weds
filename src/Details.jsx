@@ -31,6 +31,7 @@ const Details = () => {
     <section className={`details-section ${isVisible ? 'is-visible' : ''}`}>
       <div className="details-left">
         <div className="details-frame-container">
+          <img src={flower3} alt="Top Floral decoration" className="details-flower-top" />
           <img src={frame2img} alt="Church" className="details-church-img" />
           <img src={frame2} alt="Green Frame" className="details-green-frame" />
         </div>

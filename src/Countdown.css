@@ -1,6 +1,6 @@
 /* Import a classic serif font if not already available. 
    We use 'Cinzel' or 'Playfair Display' for that elegant look. */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@600;700&display=swap');
 
 .countdown-section {
   width: 100%;
@@ -82,10 +82,11 @@
 }
 
 .monogram-letter {
-  font-family: "the-seasons", serif;
+  font-family: "the-seasons", "Cormorant Garamond", serif !important;
   font-size: 8rem;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 700 !important;
+  font-style: normal !important;
 }
 
 .monogram-letter-j {
@@ -97,12 +98,12 @@
 }
 
 .monogram-ampersand {
-  font-family: 'Playfair Display', serif;
+  font-family: "the-seasons", sans-serif;
   font-style: italic;
-  font-size: 4rem;
-  font-weight: 400;
-  margin: 0 10px;
-  transform: translateY(-20px); /* Move the ampersand slightly up */
+  font-size: 6rem;
+  font-weight: 700;
+  margin: 0 5px;
+  transform: translateY(-25px);
 }
 
 .countdown-timer {

@@ -12,7 +12,8 @@
   "dependencies": {
     "canvas-confetti": "^1.9.4",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",

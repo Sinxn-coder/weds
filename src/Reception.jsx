@@ -5,7 +5,35 @@ import bgvideo from './assets/bgvideo.mp4';
 const Reception = () => {
   const video1Ref = useRef(null);
   const video2Ref = useRef(null);
+  const sectionRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(1);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Force play when section comes into view
+          const currentVideo = activeVideo === 1 ? video1Ref.current : video2Ref.current;
+          if (currentVideo) {
+            currentVideo.play().catch(e => console.log("Autoplay prevented:", e));
+          }
+        } else {
+          // Pause when out of view to save battery/resources
+          if (video1Ref.current) video1Ref.current.pause();
+          if (video2Ref.current) video2Ref.current.pause();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, [activeVideo]);
 
   const handleTimeUpdate = (e, videoNumber) => {
     const video = e.target;
@@ -54,11 +82,11 @@ const Reception = () => {
   }, []);
 
   return (
-    <section className="reception-section">
+    <section className="reception-section" ref={sectionRef}>
       <video 
         ref={video1Ref}
         className={`reception-video ${activeVideo === 1 ? 'active' : ''}`} 
-        autoPlay muted playsInline
+        autoPlay muted playsInline disablePictureInPicture controls={false}
         onTimeUpdate={(e) => handleTimeUpdate(e, 1)}
       >
         <source src={bgvideo} type="video/mp4" />
@@ -67,7 +95,7 @@ const Reception = () => {
       <video 
         ref={video2Ref}
         className={`reception-video ${activeVideo === 2 ? 'active' : ''}`} 
-        muted playsInline
+        muted playsInline disablePictureInPicture controls={false}
         onTimeUpdate={(e) => handleTimeUpdate(e, 2)}
       >
         <source src={bgvideo} type="video/mp4" />

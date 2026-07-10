@@ -3,7 +3,7 @@ import './Rsvp.css';
 import buttonImg from './assets/button.webp';
 import calendarIcon from './assets/calendar-icon.svg';
 
-const SliderButton = ({ defaultText, successText, onComplete, buttonImg, textColor, successColor, onResetTimeout }) => {
+const SliderButton = ({ defaultText, successText, onComplete, buttonImg, textColor, successColor, onResetTimeout, textRightOffset = '30px' }) => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [sliderPosition, setSliderPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -99,7 +99,7 @@ const SliderButton = ({ defaultText, successText, onComplete, buttonImg, textCol
         className="rsvp-slider-text"
         style={{
           position: 'absolute',
-          right: !isUnlocked ? '30px' : 'auto',
+          right: !isUnlocked ? textRightOffset : 'auto',
           left: isUnlocked ? '25px' : 'auto',
           color: !isUnlocked ? textColor : successColor
         }}
@@ -201,6 +201,7 @@ END:VCALENDAR`;
             buttonImg={calendarIcon} 
             textColor="#d4af37" 
             successColor="#562124" 
+            textRightOffset="15px"
           />
         </div>
 

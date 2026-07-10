@@ -73,6 +73,10 @@
   transform: scaleX(-1); /* Flips the flower horizontally */
 }
 
+.details-flower-top {
+  display: none; /* Hidden on desktop */
+}
+
 .details-title {
   font-family: 'Pinyon Script', cursive;
   font-size: 5rem;
@@ -184,6 +188,7 @@
   }
   
   .details-frame-container {
+    margin-top: 150px; /* Push the frame further down so flower has its own space */
     margin-bottom: 0px; /* Removed margin so flower can pull up over it */
     max-width: 100%;
     width: 100%;
@@ -208,13 +213,22 @@
   }
   
   .details-flower {
-    width: 200px;
-    margin-top: -160px; /* Pulls the flower even further up to overlap the frame */
-    margin-right: -70px; /* Pushed further to the right */
-    margin-bottom: 20px;
-    align-self: flex-end; 
-    position: relative;
-    z-index: 10; /* Ensures it sits on top of the frame */
-    transform: rotate(-45deg) scaleX(-1); /* Rotate further left while keeping it flipped */
+    display: none; /* Hide bottom flower on mobile */
+  }
+
+  .details-flower-top {
+    display: block;
+    position: absolute;
+    width: 220px;
+    top: -260px; /* Pull much higher so it completely detaches from the frame */
+    left: 50%; /* Center horizontally */
+    z-index: 10;
+    transform: translateX(-50%); /* Center horizontally without rotation */
+    opacity: 0;
+    transition: opacity 1.5s ease 0.5s;
+  }
+  
+  .details-section.is-visible .details-flower-top {
+    opacity: 1;
   }
 }

@@ -130,8 +130,6 @@ export default function App() {
       const currentLogicalFrame = Math.floor(elapsed / frameDuration);
 
       if (currentLogicalFrame >= images.length) {
-        // Start fade-out first, then reveal content after transition completes
-        setIsFading(true);
         setTimeout(() => setAnimationFinished(true), 1500);
         return;
       }
@@ -139,7 +137,27 @@ export default function App() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const activeImage = images[currentLogicalFrame];
       if (activeImage) {
+        let alpha = 1;
+        // The user wants to start fading at ezgif-frame-054 (which is index 53) on mobile
+        if (isMobile && currentLogicalFrame >= 53) {
+          const fadeStartFrame = 53;
+          const fadeFrames = images.length - 1 - fadeStartFrame;
+          if (fadeFrames > 0) {
+            alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;
+            if (alpha < 0) alpha = 0;
+          }
+        } else if (!isMobile && currentLogicalFrame >= 118) {
+          // On desktop, user wants fading to start at ezgif-frame-119 (index 118)
+          const fadeStartFrame = 118;
+          const fadeFrames = images.length - 1 - fadeStartFrame;
+          if (fadeFrames > 0) {
+            alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;
+            if (alpha < 0) alpha = 0;
+          }
+        }
+        ctx.globalAlpha = alpha;
         ctx.drawImage(activeImage, 0, 0, canvas.width, canvas.height);
+        ctx.globalAlpha = 1; // reset alpha for next draw
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -149,7 +167,7 @@ export default function App() {
     return () => cancelAnimationFrame(animationFrameId);
   }, [isLoaded, images, isPlaying]);
 
-  // On mobile: trigger polaroids after the frame slides in (1.75s)
+  // On mobile: trigger polaroids after the canvas fades out
   // On desktop: handled by IntersectionObserver below
   useEffect(() => {
     if (!isFading) return;
@@ -211,13 +229,19 @@ export default function App() {
       <canvas
         ref={canvasRef}
         className="opening-canvas"
-        style={{ display: isLoaded ? 'block' : 'none' }}
+        style={{ 
+          display: isLoaded ? 'block' : 'none',
+          zIndex: 20,
+          pointerEvents: 'none'
+        }}
       />
 
       {isLoaded && !isPlaying && (
-        <div className="play-button-overlay" onClick={() => setIsPlaying(true)}>
+        <div className="play-button-overlay" onClick={() => {
+          setIsPlaying(true);
+          setIsFading(true);
+        }}>
           <img src={buttonImg} alt="Play Button" className="play-button-img" />
-          <p className="play-button-text">Open Invitation</p>
         </div>
       )}
 
@@ -246,6 +270,7 @@ export default function App() {
             className={`invited-image ${invitedVisible ? 'invited-visible' : ''}`}
           />
           <img src={frameOne} alt="Frame One" className="frame-one-image" />
+          <img src={buttonImg} alt="Wax Seal" className="frame-seal-image" />
           
           <div ref={polaroidsRef} className={`side-photos-container ${polaroidsVisible ? 'is-visible' : ''}`}>
             <div className="polaroid polaroid-1">
