@@ -204,7 +204,7 @@ export default function App() {
       {!isLoaded && (
         <div className="loading-screen">
           <div className="loader"></div>
-          <p>Preparing Assets... {Math.round((loadedFrames / frames.length) * 100)}%</p>
+          <p>Unfolding our love story... {Math.round((loadedFrames / frames.length) * 100)}%</p>
         </div>
       )}
 
