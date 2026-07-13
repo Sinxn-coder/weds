@@ -146,9 +146,9 @@ export default function App() {
             alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;
             if (alpha < 0) alpha = 0;
           }
-        } else if (!isMobile && currentLogicalFrame >= 118) {
-          // On desktop, user wants fading to start at ezgif-frame-119 (index 118)
-          const fadeStartFrame = 118;
+        } else if (!isMobile && currentLogicalFrame >= 127) {
+          // On desktop, user wants fading to start at ezgif-frame-128 (index 127)
+          const fadeStartFrame = 127;
           const fadeFrames = images.length - 1 - fadeStartFrame;
           if (fadeFrames > 0) {
             alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;

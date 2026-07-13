@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Rsvp.css';
 import buttonImg from './assets/button.webp';
-import calendarIcon from './assets/calendar-icon.svg';
 
 const SliderButton = ({ defaultText, successText, onComplete, buttonImg, textColor, successColor, onResetTimeout, textRightOffset = '30px' }) => {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -142,40 +141,6 @@ const Rsvp = () => {
     };
   }, []);
 
-  const handleDownloadICS = (e) => {
-    if (e) e.preventDefault();
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Jessica and David Wedding//EN
-BEGIN:VEVENT
-UID:${new Date().getTime()}@jessicaanddavid.com
-DTSTAMP:20261011T103000Z
-DTSTART:20261011T103000Z
-DTEND:20261011T200000Z
-SUMMARY:Jessica & David's Wedding
-DESCRIPTION:We can't wait to celebrate with you!
-LOCATION:KNISJA TAT-TWELID TAL-VERG'NI MARIJA, MTAĦLEB
-END:VEVENT
-END:VCALENDAR`;
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'jessica-david-wedding.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const handleCalendarOpen = () => {
-    const isApple = /iPad|iPhone|iPod|Macintosh|MacIntel|MacPPC|Mac68K/.test(navigator.userAgent);
-    if (isApple) {
-      handleDownloadICS();
-    } else {
-      window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Jessica+%26+David's+Wedding&dates=20261011T103000Z/20261011T200000Z&details=We+can't+wait+to+celebrate+with+you!&location=KNISJA+TAT-TWELID+TAL-VERG'NI+MARIJA,+MTAĦLEB", "_blank");
-    }
-  };
-
   return (
     <section className="rsvp-section">
       <div className={`rsvp-content ${isTextVisible ? 'is-visible' : ''}`} ref={textContainerRef}>
@@ -189,19 +154,8 @@ END:VCALENDAR`;
             successText="RSVP Confirmed!" 
             onComplete={() => window.location.href = 'https://forms.gle/ZiFMAbFkizhUk3xF9'} 
             buttonImg={buttonImg} 
-            textColor="#d4af37" 
+            textColor="#9fb573" 
             successColor="#562124" 
-          />
-          
-          <SliderButton 
-            defaultText="Save to Calendar" 
-            successText="Saved to Calendar!" 
-            onComplete={handleCalendarOpen} 
-            onResetTimeout={3000}
-            buttonImg={calendarIcon} 
-            textColor="#d4af37" 
-            successColor="#562124" 
-            textRightOffset="15px"
           />
         </div>
 

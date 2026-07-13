@@ -8,6 +8,12 @@ const Reception = () => {
   const sectionRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(1);
 
+  // Slow down video playback
+  useEffect(() => {
+    if (video1Ref.current) video1Ref.current.playbackRate = 0.6;
+    if (video2Ref.current) video2Ref.current.playbackRate = 0.6;
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
