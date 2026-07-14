@@ -40,6 +40,9 @@ video::-webkit-media-controls { display: none !important; }
   /* A subtle neutral dark overlay to mask blurriness without changing colors */
   background: rgba(0, 0, 0, 0.3);
   z-index: 1;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .reception-content {
