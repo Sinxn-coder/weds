@@ -87,7 +87,6 @@ const Reception = () => {
         <source src={bgvideo} type="video/mp4" />
       </video>
 
-      <div className="reception-overlay"></div>
       <div className="reception-content" ref={textRef}>
         <h2 className={`reception-title ${isVisible ? 'is-visible' : ''}`}>
           Reception: Villa Mdina,<br />
