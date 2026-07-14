@@ -69,6 +69,18 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
+  // Lock scroll while the opening animation is active
+  useEffect(() => {
+    if (!animationFinished) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [animationFinished]);
+
   return (
     <div className="wrapper">
       
@@ -82,7 +94,8 @@ export default function App() {
         poster={isMobile ? posterImg : undefined}
         style={{ 
           display: animationFinished ? 'none' : 'block',
-          objectFit: 'cover',
+          backgroundColor: '#562124',
+          objectFit: isMobile ? 'contain' : 'cover',
           width: '100%',
           height: '100%',
           position: 'fixed',
