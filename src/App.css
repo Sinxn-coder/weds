@@ -8,9 +8,9 @@
 
 body, html {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
-  background-color: #0d0a0b; /* Very dark elegant background */
+  background-color: #0d0a0b;
   font-family: 'Playfair Display', serif;
   color: #d4af37;
 }
@@ -18,7 +18,7 @@ body, html {
 .wrapper {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .loading-screen {
