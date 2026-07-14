@@ -220,7 +220,7 @@
     display: block;
     position: absolute;
     width: 220px;
-    top: -260px; /* Pull much higher so it completely detaches from the frame */
+    top: -220px; /* Pull it down closer to the frame, but not touching */
     left: 50%; /* Center horizontally */
     z-index: 10;
     transform: translateX(-50%); /* Center horizontally without rotation */

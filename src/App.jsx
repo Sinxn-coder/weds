@@ -23,39 +23,7 @@ const mobileFrames = Object.keys(mobileModules).sort().map((key) => mobileModule
 // Detect mobile once at module level — avoids re-renders changing the frame set mid-load
 const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-const HangingLantern = ({ className, length = 200, delay = "0s", duration = "4s" }) => (
-  <svg className={className} style={{ animationDelay: delay, animationDuration: duration }} width="80" height={length} viewBox={`0 0 80 ${length}`} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="40" y1="0" x2="40" y2={length - 80} stroke="#d4af37" strokeWidth="1.5" />
-    <circle cx="40" cy={length - 170 > 0 ? length - 170 : 0} r="2" fill="#d4af37" />
-    <circle cx="40" cy={length - 140 > 0 ? length - 140 : 0} r="2" fill="#d4af37" />
-    <circle cx="40" cy={length - 110 > 0 ? length - 110 : 0} r="2" fill="#d4af37" />
-    
-    <path d={`M25 ${length - 80} Q40 ${length - 95} 55 ${length - 80}`} stroke="#d4af37" strokeWidth="2" fill="none" />
-    <path d={`M30 ${length - 80} L50 ${length - 80} L45 ${length - 75} L35 ${length - 75} Z`} fill="#d4af37" />
-    
-    <path d={`M40 ${length - 72} C55 ${length - 60}, 65 ${length - 30}, 40 ${length - 10} C15 ${length - 30}, 25 ${length - 60}, 40 ${length - 72} Z`} stroke="#d4af37" strokeWidth="2" fill="transparent" />
-    <path d={`M40 ${length - 60} L48 ${length - 40} L40 ${length - 20} L32 ${length - 40} Z`} fill="#d4af37" />
-    <circle cx="40" cy={length - 40} r="3" fill="#f6ebdf" />
-    
-    <line x1="40" y1={length - 8} x2="40" y2={length} stroke="#d4af37" strokeWidth="1.5" />
-    <circle cx="40" cy={length} r="1.5" fill="#d4af37" />
-  </svg>
-);
 
-const HangingDiamond = ({ className, length = 150, delay = "0s", duration = "3.5s" }) => (
-  <svg className={className} style={{ animationDelay: delay, animationDuration: duration }} width="60" height={length} viewBox={`0 0 60 ${length}`} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="30" y1="0" x2="30" y2={length - 60} stroke="#d4af37" strokeWidth="1" strokeDasharray="4 4" />
-    <path d={`M30 ${length - 60} L45 ${length - 30} L30 ${length} L15 ${length - 30} Z`} stroke="#d4af37" strokeWidth="1.5" fill="none" />
-    <path d={`M30 ${length - 50} L40 ${length - 30} L30 ${length - 10} L20 ${length - 30} Z`} fill="#d4af37" />
-  </svg>
-);
-
-const HangingSparkle = ({ className, length = 120, delay = "0s", duration = "3s" }) => (
-  <svg className={className} style={{ animationDelay: delay, animationDuration: duration }} width="40" height={length} viewBox={`0 0 40 ${length}`} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="20" y1="0" x2="20" y2={length - 20} stroke="#d4af37" strokeWidth="1" />
-    <path d={`M20 ${length - 20} Q20 ${length - 10} 30 ${length - 10} Q20 ${length - 10} 20 ${length} Q20 ${length - 10} 10 ${length - 10} Q20 ${length - 10} 20 ${length - 20}`} fill="#d4af37" />
-  </svg>
-);
 
 export default function App() {
   const canvasRef = useRef(null);
@@ -118,46 +86,48 @@ export default function App() {
       return;
     }
 
-    let startTime = null;
     const fps = isMobile ? 38 : 32;
     const frameDuration = 1000 / fps;
+    let lastDrawTime = 0;
+    let currentLogicalFrame = 0;
     let animationFrameId;
 
     const render = (time) => {
-      if (!startTime) startTime = time;
-
-      const elapsed = time - startTime;
-      const currentLogicalFrame = Math.floor(elapsed / frameDuration);
-
       if (currentLogicalFrame >= images.length) {
         setTimeout(() => setAnimationFinished(true), 1500);
         return;
       }
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const activeImage = images[currentLogicalFrame];
-      if (activeImage) {
-        let alpha = 1;
-        // The user wants to start fading at ezgif-frame-054 (which is index 53) on mobile
-        if (isMobile && currentLogicalFrame >= 53) {
-          const fadeStartFrame = 53;
-          const fadeFrames = images.length - 1 - fadeStartFrame;
-          if (fadeFrames > 0) {
-            alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;
-            if (alpha < 0) alpha = 0;
+      if (time - lastDrawTime >= frameDuration) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const activeImage = images[currentLogicalFrame];
+        
+        if (activeImage) {
+          let alpha = 1;
+          // The user wants to start fading at ezgif-frame-054 (which is index 53) on mobile
+          if (isMobile && currentLogicalFrame >= 53) {
+            const fadeStartFrame = 53;
+            const fadeFrames = images.length - 1 - fadeStartFrame;
+            if (fadeFrames > 0) {
+              alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;
+              if (alpha < 0) alpha = 0;
+            }
+          } else if (!isMobile && currentLogicalFrame >= 127) {
+            // On desktop, user wants fading to start at ezgif-frame-128 (index 127)
+            const fadeStartFrame = 127;
+            const fadeFrames = images.length - 1 - fadeStartFrame;
+            if (fadeFrames > 0) {
+              alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;
+              if (alpha < 0) alpha = 0;
+            }
           }
-        } else if (!isMobile && currentLogicalFrame >= 127) {
-          // On desktop, user wants fading to start at ezgif-frame-128 (index 127)
-          const fadeStartFrame = 127;
-          const fadeFrames = images.length - 1 - fadeStartFrame;
-          if (fadeFrames > 0) {
-            alpha = 1 - (currentLogicalFrame - fadeStartFrame) / fadeFrames;
-            if (alpha < 0) alpha = 0;
-          }
+          ctx.globalAlpha = alpha;
+          ctx.drawImage(activeImage, 0, 0, canvas.width, canvas.height);
+          ctx.globalAlpha = 1; // reset alpha for next draw
         }
-        ctx.globalAlpha = alpha;
-        ctx.drawImage(activeImage, 0, 0, canvas.width, canvas.height);
-        ctx.globalAlpha = 1; // reset alpha for next draw
+
+        currentLogicalFrame++;
+        lastDrawTime = time;
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -248,18 +218,6 @@ export default function App() {
       {/* Content page expands via heart mask over the canvas */}
       <div className={`after-animation-screen ${isFading ? 'visible' : ''}`}>
         
-        {/* Rich Array of Animated Hanging Decor */}
-        <HangingLantern className="hanging-decor hanging-pos-1" length={220} delay="0s" duration="4.5s" />
-        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-2" length={140} delay="-1s" duration="3.2s" />}
-        <HangingDiamond className="hanging-decor hanging-pos-3" length={170} delay="-2.5s" duration="3.8s" />
-        
-        {/* Shorter sparkles near the center arch */}
-        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-4" length={90} delay="-0.5s" duration="2.9s" />}
-        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-5" length={100} delay="-1.5s" duration="3.1s" />}
-
-        <HangingDiamond className="hanging-decor hanging-pos-6" length={180} delay="-1.2s" duration="4.1s" />
-        {!isMobile && <HangingSparkle className="hanging-decor hanging-pos-7" length={130} delay="-0.8s" duration="3.4s" />}
-        <HangingLantern className="hanging-decor hanging-pos-8" length={240} delay="-2s" duration="4.8s" />
 
         <div className="frame-container">
           <img src={img1} alt="Image 1" className="frame-inner-image" />

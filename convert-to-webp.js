@@ -21,7 +21,7 @@ async function convert() {
         const webpPath = path.join(dir, file.replace('.png', '.webp'));
         
         await sharp(inputPath)
-          .webp({ quality: 80 })
+          .webp({ quality: 95 })
           .toFile(webpPath);
           
         fs.unlinkSync(inputPath);

@@ -17,21 +17,19 @@
   transform: translate(-50%, -50%) scale(1.05); /* scale up to hide any baked-in video borders */
   object-fit: cover;
   z-index: 0;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out; /* Smooth crossfade to hide loop cuts */
-}
-
-.reception-video.active {
   opacity: 1;
 }
 
-.reception-video::-webkit-media-controls {
-  display: none !important;
-}
+/* Hide ALL native video controls across all browsers */
+.reception-video::-webkit-media-controls { display: none !important; }
+.reception-video::-webkit-media-controls-enclosure { display: none !important; }
+.reception-video::-webkit-media-controls-panel { display: none !important; }
+.reception-video::-webkit-media-controls-play-button { display: none !important; }
+.reception-video::-webkit-media-controls-start-playback-button { display: none !important; }
+.reception-video::-webkit-media-controls-overlay-play-button { display: none !important; }
+.reception-video::--webkit-media-controls-timeline { display: none !important; }
+video::-webkit-media-controls { display: none !important; }
 
-.reception-video::-webkit-media-controls-enclosure {
-  display: none !important;
-}
 
 .reception-overlay {
   position: absolute;
