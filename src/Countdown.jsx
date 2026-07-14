@@ -60,9 +60,7 @@ const Countdown = ({ targetDate }) => {
     return { days: 0, hours: 0, minutes: 0, seconds: 0 };
   };
 
-  const topFlowerRef = useRef(null);
-  const bottomFlowerRef = useRef(null);
-  const monogramRef = useRef(null);
+  const sectionRef = useRef(null);
   
   const [isTopVisible, setIsTopVisible] = useState(false);
   const [isBottomVisible, setIsBottomVisible] = useState(false);
@@ -80,26 +78,16 @@ const Countdown = ({ targetDate }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            if (entry.target.classList.contains('countdown-flower-right')) {
-              setIsTopVisible(true);
-            }
-            if (entry.target.classList.contains('countdown-flower-left')) {
-              setIsBottomVisible(true);
-            }
-            if (entry.target.classList.contains('monogram')) {
-              setIsMonogramVisible(true);
-            }
-          }
-        });
+        if (entries[0].isIntersecting) {
+          setIsTopVisible(true);
+          setIsBottomVisible(true);
+          setIsMonogramVisible(true);
+        }
       },
-      { threshold: 0 } // Fire as soon as any part of the layout box is in view
+      { threshold: 0.4 } // Wait until the user has scrolled significantly into the section
     );
 
-    if (topFlowerRef.current) observer.observe(topFlowerRef.current);
-    if (bottomFlowerRef.current) observer.observe(bottomFlowerRef.current);
-    if (monogramRef.current) observer.observe(monogramRef.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => {
       observer.disconnect();
@@ -107,20 +95,18 @@ const Countdown = ({ targetDate }) => {
   }, []);
 
   return (
-    <div className="countdown-section">
+    <div className="countdown-section" ref={sectionRef}>
       <img 
-        ref={topFlowerRef}
         src={flower2} 
         alt="Flower decoration" 
         className={`countdown-flower-right ${isTopVisible ? 'is-visible' : ''}`} 
       />
       <img 
-        ref={bottomFlowerRef}
         src={flower2} 
         alt="Flower decoration" 
         className={`countdown-flower-left ${isBottomVisible ? 'is-visible' : ''}`} 
       />
-      <div ref={monogramRef} className={`monogram ${isMonogramVisible ? 'is-visible' : ''}`}>
+      <div className={`monogram ${isMonogramVisible ? 'is-visible' : ''}`}>
         <span className="monogram-letter monogram-letter-j">J</span>
         <span className="monogram-ampersand">&</span>
         <span className="monogram-letter monogram-letter-a">A</span>

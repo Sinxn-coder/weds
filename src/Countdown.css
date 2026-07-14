@@ -1,6 +1,6 @@
 /* Import a classic serif font if not already available. 
    We use 'Cinzel' or 'Playfair Display' for that elegant look. */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@600;700&family=Pinyon+Script&display=swap');
 
 .countdown-section {
   width: 100%;
@@ -26,7 +26,7 @@
   pointer-events: none;
   clip-path: inset(100% 0 0 0);
   opacity: 0.01;
-  transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0s;
+  transition: clip-path 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0s;
 }
 
 .countdown-flower-left {
@@ -39,7 +39,7 @@
   pointer-events: none;
   clip-path: inset(100% 0 0 0);
   opacity: 0.01;
-  transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0s;
+  transition: clip-path 3.5s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0s;
 }
 
 /* Base animated visible state (applies to both desktop and mobile) */
@@ -65,7 +65,7 @@
 
 .monogram.is-visible .monogram-letter-j {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-60px); /* J rests higher up */
   transition-delay: 0.1s;
 }
 
@@ -77,31 +77,29 @@
 
 .monogram.is-visible .monogram-letter-a {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(35px); /* A rests lower down */
   transition-delay: 0.5s;
 }
 
 .monogram-letter {
-  font-family: "the-seasons", "Cormorant Garamond", serif !important;
+  font-family: "the-seasons", serif;
   font-size: 8rem;
   line-height: 1;
-  font-weight: 700 !important;
-  font-style: normal !important;
+  font-weight: 400;
 }
 
 .monogram-letter-j {
-  transform: translateY(-40px); /* Move the J slightly up */
+  transform: translateY(-60px); /* Move the J further up */
 }
 
 .monogram-letter-a {
-  transform: translateY(15px); /* Move the A slightly down */
+  transform: translateY(35px); /* Move the A further down */
 }
 
 .monogram-ampersand {
-  font-family: "the-seasons", sans-serif;
-  font-style: italic;
-  font-size: 6rem;
-  font-weight: 700;
+  font-family: 'Pinyon Script', cursive;
+  font-size: 8rem; /* Pinyon Script needs to be larger to match */
+  font-weight: normal;
   margin: 0 5px;
   transform: translateY(-25px);
 }
@@ -226,7 +224,7 @@
     /* Rotated 90deg, so clipping the 'top' clips the screen's 'right' side */
     clip-path: inset(100% 0 0 0);
     opacity: 0.01;
-    transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0s;
+    transition: clip-path 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0s;
     height: auto;
     width: 30%;
   }
@@ -240,7 +238,7 @@
     /* Flipped and rotated, clipping the 'left' clips the screen's 'right' side */
     clip-path: inset(0 0 0 100%);
     opacity: 0.01;
-    transition: clip-path 2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0s;
+    transition: clip-path 3.5s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0s;
     height: auto;
     width: 30%;
   }

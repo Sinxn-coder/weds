@@ -107,7 +107,7 @@ body, html {
   display: block;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: #f6ebdf;
+  background-color: #F4E7DA;
   position: absolute;
   top: 0;
   left: 0;
@@ -151,11 +151,12 @@ body, html {
 @media (min-width: 769px) {
   .play-button-overlay {
     top: 55%; /* Nudged up slightly more for desktop */
+    left: 51%; /* Nudged slightly to the right for desktop */
     transform: translate(-50%, -50%);
   }
 
   .play-button-img {
-    width: 375px; /* Slightly larger size for desktop */
+    width: 378px; /* Slightly larger size for desktop */
     margin-bottom: 0; /* Remove bottom margin since text is no longer below */
   }
 }
@@ -180,21 +181,21 @@ body, html {
 
 .frame-inner-image {
   position: absolute;
-  top: 47%; /* Shifted up slightly from 50% */
+  top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%; /* Decreased further */
-  height: 90%; /* Decreased further */
+  width: 95%; 
+  height: 95%;
   object-fit: contain; /* ensures the image is not cut at all */
   z-index: 1;
 }
 
 .invited-image {
   position: absolute;
-  top: 58%;
+  top: 45%; /* Pinned perfectly into the top white decorative arch */
   left: 50%;
-  transform: translate(-50%, 100px);
-  width: 50%;
+  transform: translate(-50%, 30px); /* Starts slightly lower for a gentle float up */
+  width: 40%;
   object-fit: contain;
   z-index: 2;
   pointer-events: none;
@@ -205,40 +206,33 @@ body, html {
 /* Desktop: slide up on scroll via IntersectionObserver */
 .invited-image.invited-visible {
   opacity: 1;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0); /* Rests exactly at top: 15% */
 }
 
 .frame-one-image {
   position: relative;
   width: 100%;
-  height: 200vh;
-  object-fit: cover;
+  height: auto; /* Removed 200vh to stop cropping and keep aspect ratio perfect */
+  object-fit: contain;
   display: block;
   z-index: 2;
 }
 
 .frame-seal-image {
   position: absolute;
-  bottom: calc(15% - 5px); /* Nudged down slightly for mobile */
+  bottom: 14%; /* Lowered to align perfectly over the printed seal */
   left: 50%;
   transform: translateX(-50%);
-  width: 100px; /* Reduced size even further for mobile */
+  width: 25%; /* Increased width to match the printed seal size */
   z-index: 10;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
 }
 
-@media (min-width: 769px) {
-  .frame-seal-image {
-    width: 250px;
-    bottom: calc(15% - 5px); /* Nudged down exactly 5px for desktop */
-  }
-}
-
 .main-flower-image {
   position: absolute;
-  bottom: 0;
-  left: -5%; /* Hangs slightly off the left edge */
-  height: 65%;
+  bottom: -2%;
+  left: -8%; 
+  height: 55%;
   object-fit: contain;
   pointer-events: none;
   z-index: 5;
@@ -247,9 +241,10 @@ body, html {
 /* Side Polaroid Photos */
 .side-photos-container {
   position: absolute;
-  top: 75%;
-  right: 2%;
+  top: 70%; /* Moved further down in desktop */
+  right: 0%;
   transform: translateY(-50%);
+  width: 25%; /* Proportional width instead of fixed px */
   z-index: 6;
   pointer-events: none;
 }
@@ -258,7 +253,7 @@ body, html {
   background: #fff;
   padding: 12px 12px 18px 12px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-  width: 290px;
+  width: 100%; /* Fill the % container */
   border-radius: 2px;
   opacity: 0;
   transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
@@ -335,13 +330,10 @@ body, html {
 @media (max-width: 768px) {
   .frame-container {
     width: 95%;
-    margin: 12.5rem auto 1rem auto; /* Moved very, very slightly further down on mobile */
+    margin: 2rem auto 1rem auto; /* Small space at the top in mobile */
   }
   
-  .frame-one-image {
-    height: auto;
-    object-fit: contain;
-  }
+  /* No longer need height auto override because it's default everywhere now */
 
   /* Mobile: invited image slides up on a timer after frame finishes */
   .invited-image {
@@ -353,8 +345,8 @@ body, html {
   }
 
   @keyframes slideUpInvited {
-    from { opacity: 0; transform: translate(-50%, 100px); }
-    to   { opacity: 1; transform: translate(-50%, -50%); }
+    from { opacity: 0; transform: translate(-50%, 30px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
   }
   
   .main-flower-image {
@@ -365,7 +357,8 @@ body, html {
   .side-photos-container {
     right: 5%;
     top: 80%;
-    transform: translateY(-50%) scale(0.35);
+    width: 28%; /* Reduced width to make them a perfect subtle size on mobile */
+    transform: translateY(-50%); 
     transform-origin: right center;
     visibility: hidden;
   }
@@ -374,7 +367,12 @@ body, html {
     visibility: visible;
   }
 
-  /* Reset polaroid base state for mobile — no !important so animations can override */
+  /* Reset polaroid base state for mobile */
+  .polaroid {
+    padding: 4px 4px 12px 4px; /* Much smaller white border on mobile */
+  }
+
+  /* Reset polaroid animations — no !important so animations can override */
   .polaroid-1 {
     opacity: 0;
     transform: translateX(120%) rotate(5deg);

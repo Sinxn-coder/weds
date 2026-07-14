@@ -92,19 +92,20 @@
 
 .gift-text-main {
   font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: #562124;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
-  line-height: 1.8;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  line-height: 2;
+  text-transform: uppercase;
 }
 
 .gift-text-secondary {
   font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #562124;
-  letter-spacing: 1.5px;
-  line-height: 2.2;
+  letter-spacing: 2px;
+  line-height: 2.4;
 }
 
 .gift-text-secondary p {
@@ -160,27 +161,36 @@
     width: 130%; /* Larger envelope on mobile */
   }
   .gift-title {
-    font-size: 4rem; /* Smaller to fit on one line better */
-    line-height: 0.9; /* Increase line height so wrapped lines don't touch */
-    padding-right: 0;
-    text-indent: 60px; /* Shifts 'Your' to the right on mobile */
+    font-size: 3.2rem; /* Reduced slightly more to prevent any overflow pushing it off-center */
+    line-height: 1; 
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+    white-space: nowrap; 
   }
   .gift-subtitle {
     font-size: 1.4rem; /* Smaller to prevent wrapping */
     margin: 10px 0 25px 0; /* Small gap matching desktop */
   }
   .gift-card-fg {
-    padding: 40px 15px 50px 15px; /* Less horizontal padding */
-    width: 95%; /* Allow envelope to peek out the sides */
-    margin: 40px 0;
+    padding: 40px 10px 50px 10px;
+    width: 95%;
+    margin: 40px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Vertically center all content inside the card */
   }
   .gift-text-main {
     font-size: 0.65rem;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     margin-bottom: 25px;
+    line-height: 2.2;
   }
   .gift-text-secondary {
     font-size: 0.6rem;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    line-height: 2.4;
   }
 }

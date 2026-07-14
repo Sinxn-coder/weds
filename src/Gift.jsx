@@ -32,13 +32,11 @@ const Gift = () => {
           <h2 className="gift-title">Your Presence</h2>
           <h3 className="gift-subtitle">IS ALL WE ASK FOR</h3>
           <p className="gift-text-main">
-            YOUR PRESENCE ON OUR SPECIAL DAY IS THE GREATEST GIFT OF ALL.
+            YOUR PRESENCE ON OUR SPECIAL DAY IS THE GREATEST GIFT OF ALL.<br />
+            SHOULD YOU WISH TO<br />
+            HONOUR US WITH A GIFT, A CONTRIBUTION TOWARDS OUR FUTURE<br />
+            TOGETHER WOULD BE DEEPLY APPRECIATED.
           </p>
-          <div className="gift-text-secondary">
-            <p>SHOULD YOU WISH TO</p>
-            <p>HONOUR US WITH A GIFT, A CONTRIBUTION TOWARDS OUR FUTURE</p>
-            <p>TOGETHER WOULD BE DEEPLY APPRECIATED.</p>
-          </div>
         </div>
       </div>
     </section>
