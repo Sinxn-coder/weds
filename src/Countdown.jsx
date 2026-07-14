@@ -79,12 +79,20 @@ const Countdown = ({ targetDate }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setIsTopVisible(true);
-          setIsBottomVisible(true);
-          setIsMonogramVisible(true);
+          // Small delay so the section is fully in frame before animation starts
+          setTimeout(() => {
+            setIsTopVisible(true);
+            setIsBottomVisible(true);
+            setIsMonogramVisible(true);
+          }, 100);
+        } else {
+          // Reset when leaving so animation replays on re-entry
+          setIsTopVisible(false);
+          setIsBottomVisible(false);
+          setIsMonogramVisible(false);
         }
       },
-      { threshold: 0.4 } // Wait until the user has scrolled significantly into the section
+      { threshold: 0.15 } // Trigger when just 15% of section is visible
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
