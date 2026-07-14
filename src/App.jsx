@@ -95,7 +95,7 @@ export default function App() {
         style={{ 
           display: animationFinished ? 'none' : 'block',
           backgroundColor: '#562124',
-          objectFit: isMobile ? 'contain' : 'cover',
+          objectFit: 'cover',
           width: '100%',
           height: '100%',
           position: 'fixed',
@@ -122,9 +122,7 @@ export default function App() {
           if (videoRef.current) {
             videoRef.current.play();
           }
-        }}>
-          <img src={buttonImg} alt="Play Button" className="play-button-img" />
-        </div>
+        }} />
       )}
 
       {/* Content page expands via heart mask */}
