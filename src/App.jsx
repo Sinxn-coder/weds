@@ -4,7 +4,7 @@ import openingVideoMobile from './assets/openingmobile/Create_a_second_×_1.mp4'
 import posterImg from './assets/openingmobile/img.png';
 import frameOne from './assets/frame1.png';
 import mainFlower from './assets/mainflower.webp';
-import img1 from './assets/img1.webp';
+import img1 from './assets/img1.png';
 import invited from './assets/invited.webp';
 import img2 from './assets/img2.webp';
 import img3 from './assets/img3.webp';
