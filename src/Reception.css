@@ -1,11 +1,23 @@
 .reception-section {
   position: relative;
   width: 100%;
-  height: 100vh; /* Full screen section */
+  height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  isolation: isolate;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.reception-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .reception-video {
@@ -32,17 +44,7 @@ video::-webkit-media-controls { display: none !important; }
 
 
 .reception-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* A subtle neutral dark overlay to mask blurriness without changing colors */
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  display: none; /* Replaced by ::before pseudo-element to prevent iOS blinking */
 }
 
 .reception-content {
@@ -93,9 +95,9 @@ video::-webkit-media-controls { display: none !important; }
 
   .reception-content {
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     margin-top: 0;
     width: 100%;
   }
