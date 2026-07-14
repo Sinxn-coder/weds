@@ -91,7 +91,6 @@ export default function App() {
         className="opening-canvas" 
         playsInline
         muted
-        poster={isMobile ? posterImg : undefined}
         style={{ 
           display: animationFinished ? 'none' : 'block',
           backgroundColor: '#562124',
@@ -114,6 +113,26 @@ export default function App() {
           }
         }}
       />
+
+      {/* Manual Poster Overlay for smooth transition */}
+      {isMobile && !animationFinished && (
+        <img 
+          src={posterImg} 
+          alt="Opening" 
+          style={{
+            position: 'fixed',
+            top: 0, 
+            left: 0,
+            width: '100%', 
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 25,
+            opacity: isPlaying ? 0 : 1,
+            transition: 'opacity 0.5s ease-out',
+            pointerEvents: 'none' /* lets clicks pass to the overlay below */
+          }}
+        />
+      )}
 
       {/* Play Button Overlay */}
       {!isPlaying && !animationFinished && (
