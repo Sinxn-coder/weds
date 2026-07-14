@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import openingVideo from './assets/opening/1784015283341.mp4';
 import openingVideoMobile from './assets/openingmobile/Create_a_second_×_1.mp4';
+import posterImg from './assets/openingmobile/img.png';
 import frameOne from './assets/frame1.png';
 import mainFlower from './assets/mainflower.webp';
 import img1 from './assets/img1.webp';
@@ -78,6 +79,7 @@ export default function App() {
         className="opening-canvas" 
         playsInline
         muted
+        poster={isMobile ? posterImg : undefined}
         style={{ 
           display: animationFinished ? 'none' : 'block',
           objectFit: 'cover',
