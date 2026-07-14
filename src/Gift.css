@@ -98,6 +98,14 @@
   margin-bottom: 30px;
   line-height: 2;
   text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.mobile-break {
+  display: none;
+}
+.desktop-break {
+  display: block;
 }
 
 .gift-text-secondary {
@@ -192,5 +200,11 @@
     font-size: 0.6rem;
     letter-spacing: 1.5px;
     line-height: 2.4;
+  }
+  .mobile-break {
+    display: block;
+  }
+  .desktop-break {
+    display: none;
   }
 }
