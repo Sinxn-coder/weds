@@ -26,10 +26,20 @@
   left: 50%;
   width: 100vw;
   height: 100vh;
-  transform: translate(-50%, -50%) scale(1.05); /* scale up to hide any baked-in video borders */
+  transform: translate(-50%, -50%) scale(1.05);
   object-fit: cover;
   z-index: 0;
-  opacity: 1;
+  /* 
+   * CRITICAL iOS FIX: opacity < 1 prevents iOS Safari from promoting the video
+   * to a separate native hardware overlay layer. Without this, any DOM elements
+   * layered above the video cause blink/flicker during scroll due to
+   * cross-pipeline compositing. 0.9999 is visually identical to 1.
+   */
+  opacity: 0.9999;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* Hide ALL native video controls across all browsers */
