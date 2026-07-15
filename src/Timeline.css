@@ -19,95 +19,9 @@
   z-index: 0;
 }
 
-/* Envelope Placeholder on the Left */
-.timeline-envelope-frame {
-  position: absolute;
-  left: -5vw;
-  top: 50%;
-  transform: translateY(-50%) translateX(-50px);
-  width: 300px;
-  height: 400px;
-  z-index: 1;
-  opacity: 0;
-  transition: all 1s ease-out;
-}
 
-.timeline-envelope-frame.is-visible {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
-}
 
-.envelope-placeholder {
-  width: 100%;
-  height: 100%;
-  background-color: #731e28;
-  border-radius: 5px;
-  position: relative;
-  box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
-  overflow: hidden;
-}
 
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background-color: #8a2430;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
-
-.envelope-seal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  background-color: #b8905b;
-  border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* Polaroids Placeholder on the Right */
-.timeline-polaroids-frame {
-  position: absolute;
-  right: 2vw;
-  top: 50%;
-  transform: translateY(-50%) translateX(50px);
-  width: 250px;
-  height: 500px;
-  z-index: 3;
-  opacity: 0;
-  transition: all 1s ease-out;
-}
-
-.timeline-polaroids-frame.is-visible {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
-}
-
-.polaroid-placeholder {
-  position: absolute;
-  width: 200px;
-  height: 240px;
-  background-color: white;
-  padding: 10px 10px 40px 10px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
-  border: 1px solid #ddd;
-}
-
-.polaroid-placeholder::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: #e0e0e0;
-}
-
-.p1 { top: 0; right: 20px; transform: rotate(5deg); z-index: 1; }
-.p2 { top: 150px; right: 0; transform: rotate(-5deg); z-index: 2; }
-.p3 { top: 300px; right: 10px; transform: rotate(3deg); z-index: 3; }
 
 /* Central Card */
 .timeline-card {
@@ -330,11 +244,6 @@
     padding: 60px 15px;
   }
   
-  .timeline-envelope-frame,
-  .timeline-polaroids-frame {
-    display: none; /* Hide decorative assets on mobile to save space */
-  }
-
   .timeline-card {
     padding: 40px 20px;
   }

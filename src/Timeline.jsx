@@ -87,21 +87,6 @@ const Timeline = () => {
       {/* Background scenery replacement (color gradient) */}
       <div className="timeline-bg"></div>
 
-      {/* Frame for envelope on the left */}
-      <div className={`timeline-envelope-frame ${isVisible ? 'is-visible' : ''}`}>
-        <div className="envelope-placeholder">
-          <div className="envelope-flap"></div>
-          <div className="envelope-seal"></div>
-        </div>
-      </div>
-
-      {/* Frame for polaroids on the right */}
-      <div className={`timeline-polaroids-frame ${isVisible ? 'is-visible' : ''}`}>
-        <div className="polaroid-placeholder p1"></div>
-        <div className="polaroid-placeholder p2"></div>
-        <div className="polaroid-placeholder p3"></div>
-      </div>
-
       {/* Main Content Card */}
       <div className={`timeline-card ${isVisible ? 'is-visible' : ''}`}>
         <div className="timeline-header">
