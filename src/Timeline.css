@@ -1,14 +1,20 @@
 .timeline-section {
   position: relative;
   width: 100vw;
-  min-height: 100dvh;
-  padding: 20px 10px;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fbf6ef;
+  background-color: #2c3627;
   overflow: hidden;
   z-index: 10;
+}
+
+.timeline-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2c3627 0%, #1f251c 100%);
+  z-index: 0;
 }
 
 
@@ -19,13 +25,20 @@
 .timeline-card {
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: 95%;
+  height: 95dvh;
   max-width: 900px;
-  padding: 20px;
+  background-color: #fbf6ef;
+  border-radius: 15px;
+  padding: 20px 10px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
   transition: all 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .timeline-card.is-visible {
@@ -34,22 +47,22 @@
 }
 
 .timeline-header {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   color: #731e28;
 }
 
 .timeline-our {
   font-family: 'Pinyon Script', cursive;
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 1;
   display: block;
-  margin-bottom: -10px;
+  margin-bottom: -5px;
 }
 
 .timeline-main-title {
   font-family: 'Playfair Display', serif;
-  font-size: 4rem;
-  letter-spacing: 5px;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
   font-weight: 400;
   text-transform: uppercase;
   margin: 0;
@@ -59,7 +72,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 15px 0;
+  margin: 5px 0;
 }
 
 .timeline-divider::before,
@@ -78,9 +91,9 @@
 
 .timeline-subtitle {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #4a4a4a;
-  line-height: 1.6;
+  line-height: 1.2;
 }
 
 /* Timeline Track */
@@ -88,6 +101,10 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .timeline-track::before {
@@ -105,9 +122,9 @@
   position: relative;
   width: 100%;
   display: flex;
-  margin-bottom: 8px;
+  margin-bottom: -15px; /* Overlap them slightly to fit perfectly */
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(10px);
   transition: all 0.5s ease-out;
 }
 
@@ -145,18 +162,18 @@
 }
 
 .timeline-icon {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
 .timeline-item.left .timeline-icon {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .timeline-item.right .timeline-icon {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .timeline-icon img {
@@ -174,27 +191,29 @@
   font-family: 'Playfair Display', serif;
   color: #731e28;
   font-weight: 600;
-  font-size: 0.75rem;
-  margin-bottom: 1px;
+  font-size: 0.65rem;
+  margin-bottom: 0px;
 }
 
 .timeline-title {
   font-family: 'Playfair Display', serif;
   color: #4a4a4a;
   font-weight: 600;
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-bottom: 1px;
+  margin-bottom: 0px;
   white-space: pre-line;
+  line-height: 1.1;
 }
 
 .timeline-desc {
   font-family: 'Playfair Display', serif;
   color: #666;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   font-style: italic;
   white-space: pre-line;
+  line-height: 1.1;
 }
 
 .timeline-dot {
@@ -209,7 +228,7 @@
 }
 
 .timeline-footer {
-  margin-top: 15px;
+  margin-top: 5px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -229,37 +248,7 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 900px) {
-  .timeline-section {
-    padding: 60px 15px;
-  }
-  
-  .timeline-card {
-    padding: 40px 20px;
-  }
-
-  .timeline-main-title {
-    font-size: 3rem;
-  }
-
-  /* Make timeline single column on mobile */
-  .timeline-track::before {
-    left: 20px;
-  }
-
-  .timeline-dot {
-    left: 20px;
-  }
-
   .timeline-content {
-    width: 100%;
-    padding: 0 0 0 50px !important; /* Force all content to the right of the line */
-    flex-direction: row !important;
-    text-align: left !important;
-  }
-
-  .timeline-item.left .timeline-icon,
-  .timeline-item.right .timeline-icon {
-    margin-left: 0;
-    margin-right: 15px;
+    padding: 0 5px;
   }
 }
