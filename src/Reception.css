@@ -21,9 +21,8 @@
   transform: translate(-50%, -50%) scale(1.05);
   object-fit: cover;
   z-index: 0;
-  /* Apply darkening directly on the video so iOS keeps everything
-     in a single compositor layer — no overlay element needed */
-  filter: brightness(0.65);
+  /* Enhance colors and clarity for desktop */
+  filter: brightness(0.85) contrast(1.15) saturate(1.2);
 }
 
 /* Hide ALL native video controls across all browsers */
@@ -55,7 +54,8 @@ video::-webkit-media-controls { display: none !important; }
   color: #fff;
   font-weight: 400;
   line-height: 1.1;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  /* Stronger shadow for desktop to contrast with the brighter video */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5);
   margin: 0;
   opacity: 0;
   transform: translate3d(0, 60px, 0);
@@ -85,6 +85,8 @@ video::-webkit-media-controls { display: none !important; }
     height: 100%; 
     transform: none;
     object-fit: cover; /* Zooms in slightly to fill the taller section */
+    /* Darken more heavily on mobile for text contrast */
+    filter: brightness(0.65);
   }
 
   .reception-content {
@@ -98,16 +100,5 @@ video::-webkit-media-controls { display: none !important; }
 
   .reception-title {
     font-size: 2.2rem;
-  }
-}
-
-/* Desktop-only enhancements for sharper, clearer text */
-@media (min-width: 901px) {
-  .reception-title {
-    /* Multi-layered shadow: tight dark shadow for sharpness, wide blur for separation */
-    text-shadow: 
-      2px 2px 4px rgba(0, 0, 0, 0.8), 
-      0 0 15px rgba(0, 0, 0, 0.6), 
-      0 0 30px rgba(0, 0, 0, 0.5);
   }
 }
