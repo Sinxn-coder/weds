@@ -100,3 +100,14 @@ video::-webkit-media-controls { display: none !important; }
     font-size: 2.2rem;
   }
 }
+
+/* Desktop-only enhancements for sharper, clearer text */
+@media (min-width: 901px) {
+  .reception-title {
+    /* Multi-layered shadow: tight dark shadow for sharpness, wide blur for separation */
+    text-shadow: 
+      2px 2px 4px rgba(0, 0, 0, 0.8), 
+      0 0 15px rgba(0, 0, 0, 0.6), 
+      0 0 30px rgba(0, 0, 0, 0.5);
+  }
+}
