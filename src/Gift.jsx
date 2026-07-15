@@ -33,10 +33,10 @@ const Gift = () => {
           <h3 className="gift-subtitle">IS ALL WE ASK FOR</h3>
           <p className="gift-text-main">
             YOUR PRESENCE ON OUR SPECIAL DAY<br className="mobile-break" />
-            IS THE GREATEST GIFT OF ALL.<br className="mobile-break" />
-            SHOULD YOU WISH TO<br className="mobile-break" />
+            IS THE GREATEST GIFT OF ALL.<br className="desktop-break" /><br className="mobile-break" />
+            SHOULD YOU WISH TO<br className="desktop-break" /><br className="mobile-break" />
             HONOUR US WITH A GIFT, A<br className="mobile-break" />
-            CONTRIBUTION TOWARDS OUR FUTURE<br className="mobile-break" />
+            CONTRIBUTION TOWARDS OUR FUTURE<br className="desktop-break" /><br className="mobile-break" />
             TOGETHER WOULD BE DEEPLY<br className="mobile-break" />
             APPRECIATED.
           </p>
