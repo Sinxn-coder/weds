@@ -25,15 +25,15 @@
   filter: brightness(0.9);
 }
 
-/* Add a rich golden/warm color overlay ONLY on desktop to match the screenshot */
+/* Add a subtle twilight blue/dark overlay ONLY on desktop to complement the video's night sky */
 @media (min-width: 901px) {
   .reception-section::before {
     content: '';
     position: absolute;
     inset: 0;
-    /* Rich warm golden/brown tint */
-    background: rgba(145, 110, 40, 0.45);
-    mix-blend-mode: color;
+    /* Deep twilight blue tint to match the video's evening vibe */
+    background: rgba(15, 30, 70, 0.5);
+    mix-blend-mode: multiply;
     z-index: 1;
     pointer-events: none;
   }
