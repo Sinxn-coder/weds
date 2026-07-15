@@ -14,6 +14,7 @@ import Details from './Details';
 import Reception from './Reception';
 import Gift from './Gift';
 import Rsvp from './Rsvp';
+import Timeline from './Timeline';
 import './App.css';
 
 const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -174,6 +175,7 @@ export default function App() {
         <Details />
         <Reception />
         <Rsvp />
+        <Timeline />
         <Gift />
 
       </div>
