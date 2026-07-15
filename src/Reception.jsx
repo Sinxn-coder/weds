@@ -89,6 +89,14 @@ const Reception = () => {
         disableRemotePlayback
         preload="auto"
         onCanPlay={() => forcePlay(videoRef.current)}
+        onTimeUpdate={(e) => {
+          const video = e.target;
+          // Manually reset video just before it ends to prevent native loop black-frame flash
+          if (video.duration && video.currentTime >= video.duration - 0.1) {
+            video.currentTime = 0.05;
+            video.play().catch(() => {});
+          }
+        }}
       >
         <source src={isMobile ? mobilebgvideo : bgvideo} type="video/mp4" />
       </video>
