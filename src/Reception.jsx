@@ -20,7 +20,7 @@ const Reception = () => {
   const forcePlay = (video) => {
     if (!video) return;
     video.muted = true;
-    video.playbackRate = 0.6;
+    video.playbackRate = 1.5;
     const p = video.play();
     if (p !== undefined) {
       p.catch(() => {
@@ -54,7 +54,7 @@ const Reception = () => {
     const video = videoRef.current;
     if (!video) return;
     video.muted = true;
-    video.playbackRate = 0.6;
+    video.playbackRate = 1.5;
     const handleInteraction = () => {
       forcePlay(video);
     };
