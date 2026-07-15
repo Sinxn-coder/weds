@@ -9,6 +9,7 @@ const Reception = () => {
   const [isVisible, setIsVisible] = useState(false);
   const textRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+  const [toggleState, setToggleState] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 900);
@@ -23,11 +24,18 @@ const Reception = () => {
     const p = video.play();
     if (p !== undefined) {
       p.catch(() => {
-        // Retry once after a short delay (iOS sometimes needs a nudge)
         setTimeout(() => {
           video.play().catch(() => {});
         }, 300);
       });
+    }
+  };
+
+  const handleReplayToggle = () => {
+    setToggleState(!toggleState);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      forcePlay(videoRef.current);
     }
   };
 
@@ -83,20 +91,12 @@ const Reception = () => {
         className="reception-video"
         autoPlay
         muted
-        loop
+        loop={!isMobile} /* Loop only on desktop, play once on mobile */
         playsInline
         disablePictureInPicture
         disableRemotePlayback
         preload="auto"
         onCanPlay={() => forcePlay(videoRef.current)}
-        onTimeUpdate={(e) => {
-          const video = e.target;
-          // Manually reset video just before it ends to prevent native loop black-frame flash
-          if (video.duration && video.currentTime >= video.duration - 0.1) {
-            video.currentTime = 0.05;
-            video.play().catch(() => {});
-          }
-        }}
       >
         <source src={isMobile ? mobilebgvideo : bgvideo} type="video/mp4" />
       </video>
@@ -106,6 +106,16 @@ const Reception = () => {
           Reception: Villa Mdina,<br />
           Naxxar
         </h2>
+        {isMobile && (
+          <div className="reception-toggle-container">
+            <div 
+              className={`reception-toggle ${toggleState ? 'active' : ''}`}
+              onClick={handleReplayToggle}
+            >
+              <div className="toggle-thumb"></div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
