@@ -1,12 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Reception.css';
 import bgvideo from './assets/bgvideo.mp4';
+import mobilebgvideo from './assets/mobilebgvideo.mp4';
 
 const Reception = () => {
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const textRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 900);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Force play with retries — needed for iOS which can block autoplay
   const forcePlay = (video) => {
@@ -84,7 +92,7 @@ const Reception = () => {
         preload="auto"
         onCanPlay={() => forcePlay(videoRef.current)}
       >
-        <source src={bgvideo} type="video/mp4" />
+        <source src={isMobile ? mobilebgvideo : bgvideo} type="video/mp4" />
       </video>
 
       <div className="reception-content" ref={textRef}>

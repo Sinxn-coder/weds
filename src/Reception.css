@@ -21,22 +21,9 @@
   transform: translate(-50%, -50%) scale(1.05);
   object-fit: cover;
   z-index: 0;
-  /* Base filter */
-  filter: brightness(0.9);
-}
-
-/* Add a subtle twilight blue/dark overlay ONLY on desktop to complement the video's night sky */
-@media (min-width: 901px) {
-  .reception-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Deep twilight blue tint to match the video's evening vibe */
-    background: rgba(15, 30, 70, 0.5);
-    mix-blend-mode: multiply;
-    z-index: 1;
-    pointer-events: none;
-  }
+  /* Apply darkening directly on the video so iOS keeps everything
+     in a single compositor layer — no overlay element needed */
+  filter: brightness(0.65);
 }
 
 /* Hide ALL native video controls across all browsers */
@@ -68,8 +55,7 @@ video::-webkit-media-controls { display: none !important; }
   color: #fff;
   font-weight: 400;
   line-height: 1.1;
-  /* Stronger shadow for desktop to contrast with the brighter video */
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
   margin: 0;
   opacity: 0;
   transform: translate3d(0, 60px, 0);
@@ -87,7 +73,7 @@ video::-webkit-media-controls { display: none !important; }
 /* Mobile Responsiveness */
 @media (max-width: 900px) {
   .reception-section {
-    height: 45vh; /* Increased height slightly */
+    height: 100dvh; /* Full screen for mobile bg video */
     display: block; 
   }
   
@@ -99,8 +85,6 @@ video::-webkit-media-controls { display: none !important; }
     height: 100%; 
     transform: none;
     object-fit: cover; /* Zooms in slightly to fill the taller section */
-    /* Darken more heavily on mobile for text contrast */
-    filter: brightness(0.65);
   }
 
   .reception-content {
