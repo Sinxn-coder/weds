@@ -376,11 +376,12 @@
 
   .timeline-flower-side {
     display: block;
-    width: 220px;
-    left: -70px;
-    bottom: 15%;
+    width: 200px;
+    left: -80px;
+    top: -30px;
+    bottom: auto;
     z-index: 0;
-    opacity: 0.3;
+    opacity: 0.4;
   }
 
   .timeline-under-flower,
