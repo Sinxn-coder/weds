@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.dresscode-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fbf5ed; /* matching the beige background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dresscode-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  gap: 50px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.dresscode-container.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Left Column --- */
+.dresscode-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.dresscode-image-wrapper {
+  position: relative;
+  max-width: 450px;
+  width: 100%;
+}
+
+.dresscode-couple-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* The frame is likely baked into the image. Drop shadow adds depth */
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2));
+}
+
+.dresscode-frame-flower {
+  position: absolute;
+  bottom: -40px;
+  left: -80px;
+  width: 250px;
+  height: auto;
+  object-fit: contain;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+
+/* --- Right Column --- */
+.dresscode-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-left: 20px;
+}
+
+.dresscode-top-flower-wrapper {
+  margin-bottom: -10px;
+}
+
+.dresscode-top-flower {
+  width: 280px;
+  height: auto;
+  object-fit: contain;
+}
+
+.dresscode-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 5.5rem;
+  color: #581c22;
+  margin: 0;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.dresscode-subtitle {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: #581c22;
+  margin: 10px 0 20px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.dresscode-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  margin: 10px auto 30px;
+}
+
+.dresscode-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #581c22;
+  opacity: 0.3;
+}
+
+.dresscode-divider-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #581c22;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.dresscode-text,
+.dresscode-text-footer {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #581c22;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.dresscode-text-footer {
+  margin-bottom: 0;
+}
+
+/* Warning Box Area */
+.dresscode-warning-box-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dresscode-emblem {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -12px;
+}
+
+.dresscode-warning-box {
+  background-color: #eee1d0;
+  border: 1px solid rgba(88, 28, 34, 0.2);
+  border-radius: 6px;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  /* Notched corner effect could be done with clip-path, but simple border-radius works well */
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.dresscode-warning-box::before {
+  content: '';
+  position: absolute;
+  top: 5px; right: 5px; bottom: 5px; left: 5px;
+  border: 1px solid rgba(88, 28, 34, 0.1);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.dresscode-prohibited-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dresscode-warning-text {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 0.95rem;
+  color: #581c22;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.dresscode-bottom-ornament {
+  margin-top: 5px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .dresscode-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .dresscode-left {
+    justify-content: center;
+  }
+  
+  .dresscode-title {
+    font-size: 4rem;
+  }
+  
+  .dresscode-right {
+    padding-left: 0;
+  }
+  
+  .dresscode-frame-flower {
+    left: -20px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dresscode-title {
+    font-size: 3.5rem;
+  }
+  
+  .dresscode-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+  
+  .dresscode-text,
+  .dresscode-text-footer {
+    font-size: 1rem;
+  }
+  
+  .dresscode-warning-box {
+    padding: 12px 20px;
+    gap: 10px;
+  }
+  
+  .dresscode-warning-text {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+}

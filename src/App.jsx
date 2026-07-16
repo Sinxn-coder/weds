@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import openingVideo from './assets/opening/1784015283341.mp4';
 import openingVideoMobile from './assets/openingmobile/Create_a_second_×_1.mp4';
 import posterImg from './assets/openingmobile/img.png';
-import frameOne from './assets/frame1.png';
+import frameOne from './assets/frame1.webp';
 import mainFlower from './assets/mainflower.webp';
 import img1 from './assets/img1.png';
 import invited from './assets/invited.webp';
@@ -15,6 +15,7 @@ import Reception from './Reception';
 import Gift from './Gift';
 import Rsvp from './Rsvp';
 import Timeline from './Timeline';
+import DressCode from './DressCode';
 import './App.css';
 
 const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -176,6 +177,7 @@ export default function App() {
         <Reception />
         <Rsvp />
         <Timeline />
+        <DressCode />
         <Gift />
 
       </div>

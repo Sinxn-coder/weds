@@ -2,73 +2,97 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Timeline.css';
 
 // Import icons (assuming 1 to 12 map to these, we will adjust if they are mixed up)
-import iconChurch from './assets/timeline/1.png';
-import iconChampagne from './assets/timeline/2.png';
-import iconCamera from './assets/timeline/3.png';
-import iconCar from './assets/timeline/4.png';
-import iconVenue from './assets/timeline/5.png';
-import iconCoffee from './assets/timeline/6.png';
-import iconPeople from './assets/timeline/7.png';
-import iconPizza from './assets/timeline/8.png';
-import iconCloche from './assets/timeline/9.png';
-import iconCake from './assets/timeline/10.png';
-import iconMusic from './assets/timeline/11.png';
-import iconDisco from './assets/timeline/12.png';
+import iconChurch from './assets/timeline/1.webp';
+import iconChampagne from './assets/timeline/2.webp';
+import iconCamera from './assets/timeline/3.webp';
+import iconCar from './assets/timeline/4.webp';
+import iconVenue from './assets/timeline/5.webp';
+import iconCoffee from './assets/timeline/6.webp';
+import iconPeople from './assets/timeline/7.webp';
+import iconPizza from './assets/timeline/8.webp';
+import iconCloche from './assets/timeline/9.webp';
+import iconCake from './assets/timeline/10.webp';
+import iconMusic from './assets/timeline/11.webp';
+import iconDisco from './assets/timeline/12.webp';
+import imgFlowertime from './assets/timeline/flowertime.webp';
+import imgUnder from './assets/timeline/under.webp';
+import imgDesktopBg from './assets/timeline/desktopbg.webp';
+import imgMobileBg from './assets/timeline/mobilebg.webp';
+
+import imgFrame1 from './assets/frame2img.webp';
+import imgFrame2 from './assets/img2.webp';
+import imgFrame3 from './assets/img3.webp';
 
 const timelineEvents = [
   { time: '12:30 PM', title: 'CEREMONY / MASS', desc: 'Villa Maria,\nSt. Francis Church, Mosta', icon: iconChurch },
-  { time: '1:30 PM', title: 'SIGNING / PHOTOS / CHAMPAGNE', desc: '', icon: iconChampagne },
-  { time: '1:30 PM', title: 'PHOTOSESSION', desc: 'After Mass Travelling', icon: iconCamera },
-  { time: '2:00 PM', title: 'TRAVELLING TO VENUE', desc: '', icon: iconCar },
-  { time: '2:35 PM', title: 'VENUE ARRIVAL', desc: 'Villa Maria', icon: iconVenue },
-  { time: '2:35 PM', title: 'WELCOME DRINK\n+ FAMILY PHOTOS', desc: '', icon: iconChampagne },
-  { time: '3:00 PM', title: 'COUPLE PHOTOS', desc: '', icon: iconCamera },
-  { time: '3:10 PM', title: 'COUPLE BREAK', desc: '', icon: iconCoffee },
-  { time: '3:10 PM', title: 'COUPLE GREETING GUESTS', desc: '', icon: iconPeople },
-  { time: '4:30 PM', title: 'BUFFET STATIONS\nPIZZA', desc: '', icon: iconPizza },
-  { time: '5:15 PM', title: 'SPEECHES', desc: '', icon: iconCloche },
-  { time: '7:30 PM', title: 'CUTTING OF CAKE', desc: '', icon: iconCake },
-  { time: '7:30 PM', title: 'FIRST DANCE', desc: '', icon: iconMusic },
+  { time: '1:30 PM', title: 'SIGNING / PHOTOS / CHAMPAGNE', desc: '', icon: iconPizza },
+  { time: '1:30 PM', title: 'PHOTOSESSION', desc: 'After Mass Travelling', icon: iconChampagne },
+  { time: '2:00 PM', title: 'TRAVELLING TO VENUE', desc: '', icon: iconChampagne },
+  { time: '2:35 PM', title: 'VENUE ARRIVAL', desc: 'Villa Maria', icon: iconCamera, iconSize: 52 },
+  { time: '2:35 PM', title: 'WELCOME DRINK\n+ FAMILY PHOTOS', desc: '', icon: iconPizza },
+  { time: '3:00 PM', title: 'COUPLE PHOTOS', desc: '', icon: iconChampagne },
+  { time: '3:10 PM', title: 'COUPLE BREAK', desc: '', icon: iconCloche },
+  { time: '3:10 PM', title: 'COUPLE GREETING GUESTS', desc: '', icon: iconCar },
+  { time: '4:30 PM', title: 'BUFFET STATIONS\nPIZZA', desc: '', icon: iconCake },
+  { time: '5:15 PM', title: 'SPEECHES', desc: '', icon: iconVenue },
+  { time: '7:30 PM', title: 'CUTTING OF CAKE', desc: '', icon: iconMusic },
+  { time: '7:30 PM', title: 'FIRST DANCE', desc: '', icon: iconCoffee },
   { time: '9:30 PM', title: 'AFTER PARTY', desc: '', icon: iconDisco },
-  { time: '9:30 PM', title: 'GOING AWAY', desc: '', icon: iconCar },
+  { time: '9:30 PM', title: 'GOING AWAY', desc: '', icon: iconPeople },
 ];
 
-const TimelineItem = ({ item, index }) => {
-  const isLeft = index % 2 === 0;
-  const itemRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.2 }
-    );
-    if (itemRef.current) observer.observe(itemRef.current);
-    return () => observer.disconnect();
-  }, []);
+const TimelineRow = ({ leftItem, rightItem, isVisible, index }) => {
+  const rowRef = useRef(null);
 
   return (
-    <div className={`timeline-item ${isLeft ? 'left' : 'right'} ${isVisible ? 'is-visible' : ''}`} ref={itemRef}>
-      <div className="timeline-content">
-        <div className="timeline-icon">
-          <img src={item.icon} alt="event icon" />
-        </div>
-        <div className="timeline-text">
-          <div className="timeline-time">{item.time}</div>
-          <div className="timeline-title">{item.title}</div>
-          {item.desc && <div className="timeline-desc">{item.desc}</div>}
-        </div>
+    <div
+      className={`timeline-row ${isVisible ? 'is-visible' : ''}`}
+      ref={rowRef}
+      style={{ transitionDelay: `${index * 0.25}s` }}
+    >
+      <div className="timeline-side left-side">
+        {leftItem && (
+          <div className="timeline-content">
+            <div className="timeline-icon">
+              <img src={leftItem.icon} alt="event icon" style={leftItem.iconSize ? { width: leftItem.iconSize, height: leftItem.iconSize } : {}} />
+            </div>
+            <div className="timeline-text">
+              <div className="timeline-time">{leftItem.time}</div>
+              <div className="timeline-title">{leftItem.title}</div>
+              {leftItem.desc && <div className="timeline-desc">{leftItem.desc}</div>}
+            </div>
+          </div>
+        )}
       </div>
+      
       <div className="timeline-dot"></div>
+
+      <div className="timeline-side right-side">
+        {rightItem && (
+          <div className="timeline-content">
+            <div className="timeline-icon">
+              <img src={rightItem.icon} alt="event icon" style={rightItem.iconSize ? { width: rightItem.iconSize, height: rightItem.iconSize } : {}} />
+            </div>
+            <div className="timeline-text">
+              <div className="timeline-time">{rightItem.time}</div>
+              <div className="timeline-title">{rightItem.title}</div>
+              {rightItem.desc && <div className="timeline-desc">{rightItem.desc}</div>}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 const Timeline = () => {
   const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+  const lineRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  const [lineTop, setLineTop] = useState(0);
+  const [lineHeight, setLineHeight] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -81,11 +105,56 @@ const Timeline = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Measure first and last dot positions relative to the track
+  useEffect(() => {
+    const measure = () => {
+      if (!trackRef.current) return;
+      const rows = trackRef.current.querySelectorAll('.timeline-row');
+      if (rows.length < 2) return;
+      
+      // .timeline-dot is 23px from top + 3px half-height = 26px
+      const firstRow = rows[0];
+      const firstCenter = firstRow.offsetTop + 26;
+      
+      const lastRow = rows[rows.length - 1];
+      const lastCenter = lastRow.offsetTop + 26;
+      
+      setLineTop(firstCenter);
+      setLineHeight(lastCenter - firstCenter);
+    };
+
+    const resizeObserver = new ResizeObserver(() => measure());
+    if (trackRef.current) {
+      resizeObserver.observe(trackRef.current);
+    }
+    
+    measure(); // Initial measurement
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
-    <section className="timeline-section" ref={sectionRef}>
+    <section
+      className="timeline-section"
+      ref={sectionRef}
+      style={{
+        '--desktop-bg': `url(${imgDesktopBg})`,
+        '--mobile-bg': `url(${imgMobileBg})`
+      }}
+    >
       
       {/* Background scenery replacement (color gradient) */}
       <div className="timeline-bg"></div>
+
+      {/* Decorative Envelope under the card */}
+      <img src={imgUnder} alt="under envelope" className="timeline-under-flower" />
+
+      {/* Frames on the right side */}
+      <div className="timeline-frames-right">
+        <img src={imgFrame1} alt="frame 1" className="timeline-frame timeline-frame-1" />
+        <img src={imgFrame2} alt="frame 2" className="timeline-frame timeline-frame-2" />
+        <img src={imgFrame3} alt="frame 3" className="timeline-frame timeline-frame-3" />
+      </div>
 
       {/* Main Content Card */}
       <div className={`timeline-card ${isVisible ? 'is-visible' : ''}`}>
@@ -101,15 +170,27 @@ const Timeline = () => {
           </p>
         </div>
 
-        <div className="timeline-track">
-          {timelineEvents.map((item, index) => (
-            <TimelineItem key={index} item={item} index={index} />
+        <div className="timeline-track" ref={trackRef}>
+          <div
+            className={`timeline-line ${isVisible ? 'is-visible' : ''}`}
+            ref={lineRef}
+            style={{ top: `${lineTop}px`, '--line-height': `${lineHeight}px` }}
+          ></div>
+          {timelineEvents.reduce((result, value, index, array) => {
+            if (index % 2 === 0)
+              result.push(array.slice(index, index + 2));
+            return result;
+          }, []).map((pair, index) => (
+            <TimelineRow key={index} leftItem={pair[0]} rightItem={pair[1]} isVisible={isVisible} index={index} />
           ))}
         </div>
 
         <div className="timeline-footer">
           <span className="timeline-heart-small">♡</span> CAN'T WAIT TO CELEBRATE WITH YOU!
         </div>
+
+        {/* Decorative Flower on the side */}
+        <img src={imgFlowertime} alt="decorative flower" className="timeline-flower-side" />
       </div>
     </section>
   );
