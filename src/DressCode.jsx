@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './DressCode.css';
-import imgCouple from './assets/couple/couple.png';
+import imgCouple from './assets/couple/couple.webp';
 import imgFrameFlower from './assets/couple/frameflower.webp';
 import imgTopFlower from './assets/couple/topflower.webp';
 
