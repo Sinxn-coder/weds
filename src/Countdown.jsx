@@ -139,16 +139,14 @@ const Countdown = ({ targetDate }) => {
       <img 
         src={flower2} 
         alt="Flower decoration" 
-        className={`countdown-flower-right mobile-only ${isTopVisible ? 'is-visible' : ''}`} 
+        className={`countdown-flower-right ${isTopVisible ? 'is-visible' : ''}`} 
       />
-      <FlowerAnimation play={isTopVisible} className={`countdown-flower-right desktop-only ${isTopVisible ? 'is-visible' : ''}`} />
       
       <img 
         src={flower2} 
         alt="Flower decoration" 
-        className={`countdown-flower-left mobile-only ${isBottomVisible ? 'is-visible' : ''}`} 
+        className={`countdown-flower-left ${isBottomVisible ? 'is-visible' : ''}`} 
       />
-      <FlowerAnimation play={isBottomVisible} className={`countdown-flower-left desktop-only ${isBottomVisible ? 'is-visible' : ''}`} />
       <div className={`monogram ${isMonogramVisible ? 'is-visible' : ''}`}>
         <span className="monogram-letter monogram-letter-j">J</span>
         <span className="monogram-ampersand">&</span>
