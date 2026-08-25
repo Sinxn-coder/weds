@@ -19,9 +19,9 @@ import imgUnder from './assets/timeline/under.webp';
 import imgDesktopBg from './assets/timeline/desktopbg.webp';
 import imgMobileBg from './assets/timeline/mobilebg.webp';
 
-import imgFrame1 from './assets/frame2img.webp';
-import imgFrame2 from './assets/img2.webp';
-import imgFrame3 from './assets/img3.webp';
+import imgFrame1 from './assets/img4.jpeg';
+import imgFrame2 from './assets/img5.jpeg';
+import imgFrame3 from './assets/img6.jpeg';
 
 const timelineEvents = [
   { time: '12:30 PM', title: 'CEREMONY / MASS', desc: 'Villa Maria,\nSt. Francis Church, Mosta', icon: iconChurch },

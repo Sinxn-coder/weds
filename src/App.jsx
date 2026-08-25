@@ -4,10 +4,10 @@ import openingVideoMobile from './assets/openingmobile/Create_a_second_×_1.mp4'
 import posterImg from './assets/openingmobile/img.png';
 import frameOne from './assets/frame1.webp';
 import mainFlower from './assets/mainflower.webp';
-import img1 from './assets/img1.png';
+import img1 from './assets/img1.jpeg';
 import invited from './assets/invited.webp';
-import img2 from './assets/img2.webp';
-import img3 from './assets/img3.webp';
+import img2 from './assets/img2.jpeg';
+import img3 from './assets/img3.jpeg';
 import buttonImg from './assets/button.webp'; 
 import Countdown from './Countdown';
 import Details from './Details';

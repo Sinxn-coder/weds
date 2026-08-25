@@ -178,10 +178,10 @@ body, html {
 
 .frame-inner-image {
   position: absolute;
-  top: 50%; 
+  top: 30%; 
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%; 
+  width: 96%; 
   height: 100%;
   object-fit: contain; /* ensures the image is not cut at all */
   z-index: 1;

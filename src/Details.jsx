@@ -51,7 +51,7 @@ const Details = () => {
         
         <h3 className="details-event">Ceremony</h3>
         <p className="details-location">
-          12:30PM AT KNISJA TAT-TWELID TAL-VERG'NI<br />
+          12:30PM AT KNISJA TAT-TWELID TAL-VERĠNI<br />
           MARIJA, MTAĦLEB
         </p>
       </div>

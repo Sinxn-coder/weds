@@ -46,6 +46,43 @@ const RollingNumber = ({ value }) => {
   );
 };
 
+const frameImports = import.meta.glob('./assets/desktopflower/*.png', { eager: true, query: '?url', import: 'default' });
+const frameUrls = Object.keys(frameImports).sort().map(key => frameImports[key]);
+
+const FlowerAnimation = ({ className, play }) => {
+  const [frameIndex, setFrameIndex] = useState(0);
+
+  useEffect(() => {
+    if (!play) return;
+
+    let animationFrameId;
+    let lastTime = performance.now();
+    const fps = 45; // Increased for smoother playback
+    const interval = 1000 / fps;
+    let currentFrame = 0;
+
+    const animate = (time) => {
+      if (time - lastTime >= interval) {
+        currentFrame++;
+        if (currentFrame >= frameUrls.length) {
+          setFrameIndex(frameUrls.length - 1);
+          return; // Stop at the last frame
+        }
+        setFrameIndex(currentFrame);
+        lastTime = time;
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [play]);
+
+  if (frameUrls.length === 0) return null;
+
+  return <img src={frameUrls[frameIndex]} className={className} alt="Flower animation" />;
+};
+
 const Countdown = ({ targetDate }) => {
   const calculateTimeLeft = () => {
     const difference = +new Date(targetDate) - +new Date();
@@ -85,11 +122,6 @@ const Countdown = ({ targetDate }) => {
             setIsBottomVisible(true);
             setIsMonogramVisible(true);
           }, 100);
-        } else {
-          // Reset when leaving so animation replays on re-entry
-          setIsTopVisible(false);
-          setIsBottomVisible(false);
-          setIsMonogramVisible(false);
         }
       },
       { threshold: 0.15 } // Trigger when just 15% of section is visible
@@ -107,13 +139,16 @@ const Countdown = ({ targetDate }) => {
       <img 
         src={flower2} 
         alt="Flower decoration" 
-        className={`countdown-flower-right ${isTopVisible ? 'is-visible' : ''}`} 
+        className={`countdown-flower-right mobile-only ${isTopVisible ? 'is-visible' : ''}`} 
       />
+      <FlowerAnimation play={isTopVisible} className={`countdown-flower-right desktop-only ${isTopVisible ? 'is-visible' : ''}`} />
+      
       <img 
         src={flower2} 
         alt="Flower decoration" 
-        className={`countdown-flower-left ${isBottomVisible ? 'is-visible' : ''}`} 
+        className={`countdown-flower-left mobile-only ${isBottomVisible ? 'is-visible' : ''}`} 
       />
+      <FlowerAnimation play={isBottomVisible} className={`countdown-flower-left desktop-only ${isBottomVisible ? 'is-visible' : ''}`} />
       <div className={`monogram ${isMonogramVisible ? 'is-visible' : ''}`}>
         <span className="monogram-letter monogram-letter-j">J</span>
         <span className="monogram-ampersand">&</span>

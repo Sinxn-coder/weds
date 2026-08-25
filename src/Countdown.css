@@ -243,3 +243,28 @@
     width: 30%;
   }
 }
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+  
+  .countdown-section {
+    background-color: #CEC8C1;
+  }
+  
+  .countdown-flower-right,
+  .countdown-flower-left,
+  .countdown-flower-right.is-visible,
+  .countdown-flower-left.is-visible {
+    clip-path: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
