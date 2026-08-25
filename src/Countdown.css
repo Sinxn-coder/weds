@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #F4E7DA; /* Match first screen background */
+  background-color: #EFE0D1; /* Slightly darker than main screen */
   font-family: 'Cinzel', serif;
   color: #6b1e22;
   margin-top: 50px;
@@ -250,7 +250,7 @@
   }
   
   .countdown-section {
-    background-color: #F4E7DA;
+    background-color: #EFE0D1;
   }
   
   .countdown-flower-right,
