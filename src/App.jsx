@@ -91,7 +91,6 @@ export default function App() {
       <video
         ref={videoRef}
         src={isMobile ? openingVideoMobile : openingVideo}
-        poster={isMobile ? posterImg : posterImgDesktop}
         className="opening-canvas" 
         playsInline
         muted
@@ -119,9 +118,9 @@ export default function App() {
       />
 
       {/* Manual Poster Overlay for smooth transition */}
-      {isMobile && !animationFinished && (
+      {!animationFinished && (
         <img 
-          src={posterImg} 
+          src={isMobile ? posterImg : posterImgDesktop} 
           alt="Opening" 
           style={{
             position: 'fixed',
