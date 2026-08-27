@@ -15,7 +15,7 @@ import iconCake from './assets/timeline/10.webp';
 import iconMusic from './assets/timeline/11.webp';
 import iconDisco from './assets/timeline/12.webp';
 import imgFlowertime from './assets/timeline/flowertime.webp';
-import imgUnder from './assets/timeline/under.webp';
+import imgUnder from './assets/timeline/under.jpeg';
 import imgDesktopBg from './assets/timeline/desktopbg.webp';
 import imgMobileBg from './assets/timeline/mobilebg.webp';
 
