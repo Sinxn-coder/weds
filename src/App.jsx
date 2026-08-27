@@ -3,7 +3,7 @@ import openingVideo from './assets/opening/vid.mp4';
 import openingVideoMobile from './assets/openingmobile/Create_a_second_×_1.mp4';
 import posterImg from './assets/openingmobile/img.jpeg';
 import posterImgDesktop from './assets/opening/img.jpeg';
-import frameOne from './assets/frame1.webp';
+import frameOne from './assets/frame1.png';
 import mainFlower from './assets/mainflower.webp';
 import img1 from './assets/img1.jpeg';
 import invited from './assets/invited.webp';
