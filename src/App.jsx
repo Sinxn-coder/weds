@@ -129,23 +129,24 @@ export default function App() {
             width: '100vw', 
             height: '100dvh',
             objectFit: 'cover',
-            zIndex: 25,
+            zIndex: 30, /* Increased to catch clicks over the video */
             opacity: isPlaying ? 0 : 1,
             transition: 'opacity 0.5s ease-out',
-            pointerEvents: 'none' /* lets clicks pass to the overlay below */
+            pointerEvents: isPlaying ? 'none' : 'auto',
+            cursor: isPlaying ? 'default' : 'pointer'
+          }}
+          onClick={() => {
+            if (!isPlaying) {
+              setIsPlaying(true);
+              if (videoRef.current) {
+                videoRef.current.play();
+              }
+            }
           }}
         />
       )}
 
-      {/* Play Button Overlay */}
-      {!isPlaying && !animationFinished && (
-        <div className="play-button-overlay" onClick={() => {
-          setIsPlaying(true);
-          if (videoRef.current) {
-            videoRef.current.play();
-          }
-        }} />
-      )}
+
 
       {/* Content page expands via heart mask */}
       <div className={`after-animation-screen ${isFading ? 'visible' : ''}`}>
