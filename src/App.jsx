@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import openingVideo from './assets/opening/vid.mp4';
 import openingVideoMobile from './assets/openingmobile/Create_a_second_×_1.mp4';
 import posterImg from './assets/openingmobile/img.jpeg';
+import posterImgDesktop from './assets/opening/img.jpeg';
 import frameOne from './assets/frame1.webp';
 import mainFlower from './assets/mainflower.webp';
 import img1 from './assets/img1.jpeg';
@@ -90,6 +91,7 @@ export default function App() {
       <video
         ref={videoRef}
         src={isMobile ? openingVideoMobile : openingVideo}
+        poster={isMobile ? posterImg : posterImgDesktop}
         className="opening-canvas" 
         playsInline
         muted
