@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Gift.css';
 import bgImage from './assets/image.JPG';
-import envelopeImg from './assets/Screenshot 2026-07-13 194349.webp';
+import envelopeImg from './assets/Screenshot 2026-07-13 194349.png';
 
 const Gift = () => {
   const [isVisible, setIsVisible] = useState(false);
