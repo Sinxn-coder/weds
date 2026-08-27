@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import openingVideo from './assets/opening/1784015283341.mp4';
 import openingVideoMobile from './assets/openingmobile/Create_a_second_×_1.mp4';
 import posterImg from './assets/openingmobile/img.jpeg';
+import desktopPosterImg from './assets/opening/img.jpeg';
 import frameOne from './assets/frame1.webp';
 import mainFlower from './assets/mainflower.webp';
 import img1 from './assets/img1.jpeg';
@@ -117,9 +118,9 @@ export default function App() {
       />
 
       {/* Manual Poster Overlay for smooth transition */}
-      {isMobile && !animationFinished && (
+      {!animationFinished && (
         <img 
-          src={posterImg} 
+          src={isMobile ? posterImg : desktopPosterImg} 
           alt="Opening" 
           style={{
             position: 'fixed',
