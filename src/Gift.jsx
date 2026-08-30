@@ -38,10 +38,11 @@ const Gift = () => {
             HONOUR US WITH A GIFT, A<br className="mobile-break" />
             CONTRIBUTION TOWARDS OUR FUTURE<br className="desktop-break" /><br className="mobile-break" />
             TOGETHER WOULD BE DEEPLY<br className="mobile-break" />
-            APPRECIATED.
-          </p>
-          <p className="gift-text-main" style={{ marginTop: '1.5rem', textTransform: 'none', fontStyle: 'italic', fontSize: '0.9em', opacity: 0.9 }}>
-            While we adore your little ones, we have chosen to celebrate our special day with adult guests only. Thank you for understanding.
+            APPRECIATED.<br className="desktop-break" /><br className="mobile-break" />
+            <br className="desktop-break" /><br className="mobile-break" />
+            <span style={{ textTransform: 'none', fontStyle: 'italic', fontSize: '0.9em', opacity: 0.9 }}>
+              While we adore your little ones, we have chosen to celebrate our special day with adult guests only. Thank you for understanding.
+            </span>
           </p>
         </div>
       </div>
