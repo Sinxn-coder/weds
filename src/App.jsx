@@ -104,9 +104,18 @@ export default function App() {
           top: 0,
           left: 0,
           zIndex: 20,
-          pointerEvents: 'none',
+          pointerEvents: isPlaying ? 'none' : 'auto',
+          cursor: isPlaying ? 'default' : 'pointer',
           opacity: isFading ? 0 : 1,
           transition: 'opacity 1.5s ease-in-out'
+        }}
+        onClick={() => {
+          if (!isPlaying) {
+            setIsPlaying(true);
+            if (videoRef.current) {
+              videoRef.current.play();
+            }
+          }
         }}
         onEnded={() => setAnimationFinished(true)}
         onTimeUpdate={(e) => {
@@ -117,8 +126,8 @@ export default function App() {
         }}
       />
 
-      {/* Manual Poster Overlay for smooth transition */}
-      {!animationFinished && (
+      {/* Manual Poster Overlay for smooth transition (mobile only) */}
+      {isMobile && !animationFinished && (
         <img 
           src={isMobile ? posterImg : posterImgDesktop} 
           alt="Opening" 
