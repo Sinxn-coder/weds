@@ -119,9 +119,21 @@ export default function App() {
         }}
         onEnded={() => setAnimationFinished(true)}
         onTimeUpdate={(e) => {
-          // Start the content fade-in 1 second before the video ends
-          if (e.target.duration && e.target.duration - e.target.currentTime < 1.5 && !isFading) {
-            setIsFading(true);
+          const duration = e.target.duration;
+          const currentTime = e.target.currentTime;
+          
+          if (duration && !isFading) {
+            if (isMobile) {
+              // Start the content fade-in 1.5 seconds before the video ends
+              if (duration - currentTime < 1.5) {
+                setIsFading(true);
+              }
+            } else {
+              // Desktop: start fade out from the halfway mark of the video
+              if (currentTime >= duration / 2) {
+                setIsFading(true);
+              }
+            }
           }
         }}
       />
