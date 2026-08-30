@@ -52,7 +52,8 @@ const DressCode = () => {
 
           <p className="dresscode-text">
             We kindly invite you to dress in<br/>
-            elegant formal attire for our celebration.
+            elegant formal attire for our celebration.<br/><br/>
+            Guests are welcome to bring comfortable shoes for later in the evening. A cloakroom will be available for shoe storage.
           </p>
 
           <div className="dresscode-warning-box-wrapper">
@@ -86,9 +87,7 @@ const DressCode = () => {
             Thank you for helping us keep our<br/>
             wedding palette harmonious.
           </p>
-          <p className="dresscode-text-footer" style={{ marginTop: '1.5rem', fontStyle: 'italic', opacity: 0.8 }}>
-            Guests are welcome to bring comfortable shoes for later in the evening. A cloakroom will be available for shoe storage.
-          </p>
+
         </div>
 
       </div>
