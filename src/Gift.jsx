@@ -32,17 +32,14 @@ const Gift = () => {
           <h2 className="gift-title">Your Presence</h2>
           <h3 className="gift-subtitle">IS ALL WE ASK FOR</h3>
           <p className="gift-text-main">
-            YOUR PRESENCE ON OUR SPECIAL DAY<br className="mobile-break" />
+            YOUR PRESENCE ON OUR SPECIAL DAY <br className="mobile-break" />
             IS THE GREATEST GIFT OF ALL.<br className="desktop-break" /><br className="mobile-break" />
-            SHOULD YOU WISH TO<br className="desktop-break" /><br className="mobile-break" />
-            HONOUR US WITH A GIFT, A<br className="mobile-break" />
-            CONTRIBUTION TOWARDS OUR FUTURE<br className="desktop-break" /><br className="mobile-break" />
-            TOGETHER WOULD BE DEEPLY<br className="mobile-break" />
+            SHOULD YOU WISH TO <br className="desktop-break" /><br className="mobile-break" />
+            HONOUR US WITH A GIFT, A <br className="mobile-break" />
+            CONTRIBUTION TOWARDS OUR FUTURE <br className="desktop-break" /><br className="mobile-break" />
+            TOGETHER WOULD BE DEEPLY <br className="mobile-break" />
             APPRECIATED.<br className="desktop-break" /><br className="mobile-break" />
-            <br className="desktop-break" /><br className="mobile-break" />
-            <span style={{ textTransform: 'none', fontStyle: 'italic', fontSize: '0.9em', opacity: 0.9 }}>
-              While we adore your little ones, we have chosen to celebrate our special day with adult guests only. Thank you for understanding.
-            </span>
+            WHILE WE ADORE YOUR LITTLE ONES, WE HAVE CHOSEN TO CELEBRATE OUR SPECIAL DAY WITH ADULT GUESTS ONLY. THANK YOU FOR UNDERSTANDING.
           </p>
         </div>
       </div>
