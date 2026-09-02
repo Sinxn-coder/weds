@@ -24,21 +24,14 @@ import imgFrame2 from './assets/img5.jpeg';
 import imgFrame3 from './assets/img6.jpeg';
 
 const timelineEvents = [
-  { time: '12:30 PM', title: 'CEREMONY / MASS', desc: 'Villa Maria,\nSt. Francis Church, Mosta', icon: iconChurch },
-  { time: '1:30 PM', title: 'SIGNING / PHOTOS / CHAMPAGNE', desc: '', icon: iconPizza },
-  { time: '1:30 PM', title: 'PHOTOSESSION', desc: 'After Mass Travelling', icon: iconChampagne },
-  { time: '2:00 PM', title: 'TRAVELLING TO VENUE', desc: '', icon: iconChampagne },
-  { time: '2:35 PM', title: 'VENUE ARRIVAL', desc: 'Villa Maria', icon: iconCamera, iconSize: 52 },
-  { time: '2:35 PM', title: 'WELCOME DRINK\n+ FAMILY PHOTOS', desc: '', icon: iconPizza },
-  { time: '3:00 PM', title: 'COUPLE PHOTOS', desc: '', icon: iconChampagne },
-  { time: '3:10 PM', title: 'COUPLE BREAK', desc: '', icon: iconCloche },
-  { time: '3:10 PM', title: 'COUPLE GREETING GUESTS', desc: '', icon: iconCar },
-  { time: '4:30 PM', title: 'BUFFET STATIONS\nPIZZA', desc: '', icon: iconCake },
-  { time: '5:15 PM', title: 'SPEECHES', desc: '', icon: iconVenue },
-  { time: '7:30 PM', title: 'CUTTING OF CAKE', desc: '', icon: iconMusic },
-  { time: '7:30 PM', title: 'FIRST DANCE', desc: '', icon: iconCoffee },
-  { time: '9:30 PM', title: 'AFTER PARTY', desc: '', icon: iconDisco },
-  { time: '9:30 PM', title: 'GOING AWAY', desc: '', icon: iconPeople },
+  { time: '12:30 PM', title: 'CEREMONY / MASS', desc: '', icon: iconChurch },
+  { time: '1:30 PM', title: 'SIGNING / PHOTOS / CHAMPAGNE', desc: '', icon: iconCamera },
+  { time: '2:30 PM', title: 'VENUE ARRIVAL & CHAMPAGNE TOWER', desc: '', icon: iconChampagne },
+  { time: '4:00 PM', title: 'BBQ STATION OPEN', desc: '', icon: iconCloche },
+  { time: '5:15 PM', title: 'FIRST DANCE', desc: '', icon: iconMusic },
+  { time: '7:30 PM', title: 'CUTTING OF CAKE', desc: '', icon: iconCake },
+  { time: '7:45 PM', title: 'AFTER PARTY', desc: '', icon: iconDisco },
+  { time: '9:30 PM', title: 'GOING AWAY', desc: '', icon: iconCar },
 ];
 
 const TimelineRow = ({ leftItem, rightItem, isVisible, index }) => {
