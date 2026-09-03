@@ -156,12 +156,12 @@
 
 .timeline-side.left-side {
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 0px;
 }
 
 .timeline-side.right-side {
   justify-content: flex-start;
-  padding-left: 10px;
+  padding-left: 0px;
 }
 
 .timeline-content {
