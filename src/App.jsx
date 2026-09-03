@@ -6,7 +6,6 @@ import posterImgDesktop from './assets/opening/img.webp';
 import frameOne from './assets/frame1.webp';
 import mainFlower from './assets/mainflower.webp';
 import img1 from './assets/img1.webp';
-import imgLoading from './assets/loading.gif';
 import invited from './assets/invited.webp';
 import img2 from './assets/img2.webp';
 import img3 from './assets/img3.webp';

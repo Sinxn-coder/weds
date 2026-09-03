@@ -3,20 +3,18 @@ import path from 'path';
 import sharp from 'sharp';
 
 const assetsDir = path.resolve('./src/assets');
+const files = fs.readdirSync(assetsDir);
 
-async function processDirectory(dir) {
-  const files = fs.readdirSync(dir);
+async function convert() {
   for (const file of files) {
-    const filePath = path.join(dir, file);
+    const filePath = path.join(assetsDir, file);
     const stat = fs.statSync(filePath);
     
-    if (stat.isDirectory()) {
-      await processDirectory(filePath);
-    } else if (stat.isFile() && (file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.JPG') || file.endsWith('.JPEG'))) {
+    if (stat.isFile() && (file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.jpeg'))) {
       const parsed = path.parse(file);
-      const outPath = path.join(dir, `${parsed.name}.webp`);
+      const outPath = path.join(assetsDir, `${parsed.name}.webp`);
       
-      console.log(`Converting ${filePath} to .webp...`);
+      console.log(`Converting ${file} to ${parsed.name}.webp...`);
       await sharp(filePath)
         .webp({ quality: 85 })
         .toFile(outPath);
@@ -24,10 +22,6 @@ async function processDirectory(dir) {
       fs.unlinkSync(filePath); // delete original
     }
   }
-}
-
-async function convert() {
-  await processDirectory(assetsDir);
   console.log('All done!');
 }
 
