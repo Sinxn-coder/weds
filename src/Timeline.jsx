@@ -169,12 +169,14 @@ const Timeline = () => {
             ref={lineRef}
             style={{ top: `${lineTop}px`, '--line-height': `${lineHeight}px` }}
           ></div>
-          {timelineEvents.reduce((result, value, index, array) => {
-            if (index % 2 === 0)
-              result.push(array.slice(index, index + 2));
-            return result;
-          }, []).map((pair, index) => (
-            <TimelineRow key={index} leftItem={pair[0]} rightItem={pair[1]} isVisible={isVisible} index={index} />
+          {timelineEvents.map((event, index) => (
+            <TimelineRow 
+              key={index} 
+              leftItem={index % 2 === 0 ? event : null} 
+              rightItem={index % 2 !== 0 ? event : null} 
+              isVisible={isVisible} 
+              index={index} 
+            />
           ))}
         </div>
 

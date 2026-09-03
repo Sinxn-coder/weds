@@ -200,8 +200,8 @@
   font-family: 'Playfair Display', serif;
   color: #731e28;
   font-weight: 600;
-  font-size: 0.85rem;
-  margin-bottom: 0px;
+  font-size: 1rem;
+  margin-bottom: 8px;
 }
 
 .timeline-title {
@@ -211,7 +211,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-bottom: 0px;
+  margin-bottom: 4px;
   white-space: pre-line;
   line-height: 1.1;
 }
@@ -354,7 +354,7 @@
   }
   
   .timeline-time {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
   
   .timeline-title {
