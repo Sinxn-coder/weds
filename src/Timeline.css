@@ -170,7 +170,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 0 40px;
+  padding: 0 15px;
   text-align: left;
 }
 
@@ -329,11 +329,11 @@
   }
 
   .timeline-side.left-side {
-    padding-right: 15px;
+    padding-right: 0px;
   }
   
   .timeline-side.right-side {
-    padding-left: 15px;
+    padding-left: 0px;
   }
 
   .timeline-content {
