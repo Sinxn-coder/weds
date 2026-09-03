@@ -160,8 +160,7 @@
 }
 
 .timeline-side.left-side .timeline-content {
-  justify-content: flex-end;
-  padding-right: 23px;
+  padding-left: 20px;
 }
 
 .timeline-side.right-side {
