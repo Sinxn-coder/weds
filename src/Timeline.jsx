@@ -15,13 +15,13 @@ import iconCake from './assets/timeline/10.webp';
 import iconMusic from './assets/timeline/11.webp';
 import iconDisco from './assets/timeline/12.webp';
 import imgFlowertime from './assets/timeline/flowertime.webp';
-import imgUnder from './assets/timeline/under.jpeg';
+import imgUnder from './assets/timeline/under.webp';
 import imgDesktopBg from './assets/timeline/desktopbg.webp';
 import imgMobileBg from './assets/timeline/mobilebg.webp';
 
-import imgFrame1 from './assets/img4.jpeg';
-import imgFrame2 from './assets/img5.jpeg';
-import imgFrame3 from './assets/img6.jpeg';
+import imgFrame1 from './assets/img4.webp';
+import imgFrame2 from './assets/img5.webp';
+import imgFrame3 from './assets/img6.webp';
 
 const timelineEvents = [
   { time: '12:30 PM', title: 'CEREMONY / MASS', desc: '', icon: iconChurch },
