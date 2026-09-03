@@ -1,19 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Timeline.css';
 
-// Import icons (assuming 1 to 12 map to these, we will adjust if they are mixed up)
-import iconChurch from './assets/timeline/1.webp';
-import iconChampagne from './assets/timeline/2.webp';
-import iconCamera from './assets/timeline/3.webp';
-import iconCar from './assets/timeline/4.webp';
-import iconVenue from './assets/timeline/5.webp';
-import iconCoffee from './assets/timeline/6.webp';
-import iconPeople from './assets/timeline/7.webp';
-import iconPizza from './assets/timeline/8.webp';
-import iconCloche from './assets/timeline/9.webp';
-import iconCake from './assets/timeline/10.webp';
-import iconMusic from './assets/timeline/11.webp';
-import iconDisco from './assets/timeline/12.webp';
+// Import icons in numerical order
+import icon1 from './assets/timeline/1.webp';
+import icon2 from './assets/timeline/2.webp';
+import icon3 from './assets/timeline/3.webp';
+import icon4 from './assets/timeline/4.webp';
+import icon5 from './assets/timeline/5.webp';
+import icon6 from './assets/timeline/6.webp';
+import icon7 from './assets/timeline/7.webp';
+import icon8 from './assets/timeline/8.webp';
+
 import imgFlowertime from './assets/timeline/flowertime.webp';
 import imgUnder from './assets/timeline/under.webp';
 import imgDesktopBg from './assets/timeline/desktopbg.webp';
@@ -24,14 +21,14 @@ import imgFrame2 from './assets/img5.webp';
 import imgFrame3 from './assets/img6.webp';
 
 const timelineEvents = [
-  { time: '12:30 PM', title: 'CEREMONY / MASS', desc: '', icon: iconChurch },
-  { time: '1:30 PM', title: 'SIGNING / PHOTOS / CHAMPAGNE', desc: '', icon: iconCamera },
-  { time: '2:30 PM', title: 'VENUE ARRIVAL & CHAMPAGNE TOWER', desc: '', icon: iconChampagne },
-  { time: '4:00 PM', title: 'BBQ STATION OPEN', desc: '', icon: iconCloche },
-  { time: '5:15 PM', title: 'FIRST DANCE', desc: '', icon: iconMusic },
-  { time: '7:30 PM', title: 'CUTTING OF CAKE', desc: '', icon: iconCake },
-  { time: '7:45 PM', title: 'AFTER PARTY', desc: '', icon: iconDisco },
-  { time: '9:30 PM', title: 'GOING AWAY', desc: '', icon: iconCar },
+  { time: '12:30 PM', title: 'CEREMONY / MASS', desc: '', icon: icon1 },
+  { time: '1:30 PM', title: 'SIGNING / PHOTOS / CHAMPAGNE', desc: '', icon: icon2 },
+  { time: '2:30 PM', title: 'VENUE ARRIVAL & CHAMPAGNE TOWER', desc: '', icon: icon3 },
+  { time: '4:00 PM', title: 'BBQ STATION OPEN', desc: '', icon: icon4 },
+  { time: '5:15 PM', title: 'FIRST DANCE', desc: '', icon: icon5 },
+  { time: '7:30 PM', title: 'CUTTING OF CAKE', desc: '', icon: icon6 },
+  { time: '7:45 PM', title: 'AFTER PARTY', desc: '', icon: icon7 },
+  { time: '9:30 PM', title: 'GOING AWAY', desc: '', icon: icon8 },
 ];
 
 const TimelineRow = ({ leftItem, rightItem, isVisible, index }) => {
