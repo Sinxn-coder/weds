@@ -31,14 +31,14 @@ const Details = () => {
     <section className={`details-section ${isVisible ? 'is-visible' : ''}`}>
       <div className="details-left">
         <div className="details-frame-container">
-          <img src={flower3} alt="Top Floral decoration" className="details-flower-top" />
-          <img src={frame2img} alt="Church" className="details-church-img" />
-          <img src={frame2} alt="Green Frame" className="details-green-frame" />
+          <img loading="lazy" src={flower3} alt="Top Floral decoration" className="details-flower-top" />
+          <img loading="lazy" src={frame2img} alt="Church" className="details-church-img" />
+          <img loading="lazy" src={frame2} alt="Green Frame" className="details-green-frame" />
         </div>
       </div>
       
       <div ref={detailsRightRef} className="details-right">
-        <img src={flower3} alt="Floral decoration" className="details-flower" />
+        <img loading="lazy" src={flower3} alt="Floral decoration" className="details-flower" />
         
         <h2 className="details-title">The Details</h2>
         <p className="details-subtitle">EVERYTHING YOU NEED TO KNOW</p>
@@ -60,3 +60,4 @@ const Details = () => {
 };
 
 export default Details;
+

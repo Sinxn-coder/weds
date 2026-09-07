@@ -30,15 +30,15 @@ const DressCode = () => {
         {/* Left Column: Image & Frame */}
         <div className="dresscode-left">
           <div className="dresscode-image-wrapper">
-            <img src={imgCouple} alt="Couple in formal attire" className="dresscode-couple-img" />
-            <img src={imgFrameFlower} alt="Decorative flower on frame" className="dresscode-frame-flower" />
+            <img loading="lazy" src={imgCouple} alt="Couple in formal attire" className="dresscode-couple-img" />
+            <img loading="lazy" src={imgFrameFlower} alt="Decorative flower on frame" className="dresscode-frame-flower" />
           </div>
         </div>
 
         {/* Right Column: Content */}
         <div className="dresscode-right">
           <div className="dresscode-top-flower-wrapper">
-            <img src={imgTopFlower} alt="Top floral decoration" className="dresscode-top-flower" />
+            <img loading="lazy" src={imgTopFlower} alt="Top floral decoration" className="dresscode-top-flower" />
           </div>
           
           <h2 className="dresscode-title">Dress Code</h2>
@@ -96,3 +96,4 @@ const DressCode = () => {
 };
 
 export default DressCode;
+

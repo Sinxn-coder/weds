@@ -44,7 +44,7 @@ const TimelineRow = ({ leftItem, rightItem, isVisible, index }) => {
         {leftItem && (
           <div className="timeline-content">
             <div className="timeline-icon">
-              <img src={leftItem.icon} alt="event icon" style={leftItem.iconSize ? { width: leftItem.iconSize, height: leftItem.iconSize } : {}} />
+              <img loading="lazy" src={leftItem.icon} alt="event icon" style={leftItem.iconSize ? { width: leftItem.iconSize, height: leftItem.iconSize } : {}} />
             </div>
             <div className="timeline-text">
               <div className="timeline-time">{leftItem.time}</div>
@@ -61,7 +61,7 @@ const TimelineRow = ({ leftItem, rightItem, isVisible, index }) => {
         {rightItem && (
           <div className="timeline-content">
             <div className="timeline-icon">
-              <img src={rightItem.icon} alt="event icon" style={rightItem.iconSize ? { width: rightItem.iconSize, height: rightItem.iconSize } : {}} />
+              <img loading="lazy" src={rightItem.icon} alt="event icon" style={rightItem.iconSize ? { width: rightItem.iconSize, height: rightItem.iconSize } : {}} />
             </div>
             <div className="timeline-text">
               <div className="timeline-time">{rightItem.time}</div>
@@ -137,13 +137,13 @@ const Timeline = () => {
       <div className="timeline-bg"></div>
 
       {/* Decorative Envelope under the card */}
-      <img src={imgUnder} alt="under envelope" className="timeline-under-flower" />
+      <img loading="lazy" src={imgUnder} alt="under envelope" className="timeline-under-flower" />
 
       {/* Frames on the right side */}
       <div className="timeline-frames-right">
-        <img src={imgFrame1} alt="frame 1" className="timeline-frame timeline-frame-1" />
-        <img src={imgFrame2} alt="frame 2" className="timeline-frame timeline-frame-2" />
-        <img src={imgFrame3} alt="frame 3" className="timeline-frame timeline-frame-3" />
+        <img loading="lazy" src={imgFrame1} alt="frame 1" className="timeline-frame timeline-frame-1" />
+        <img loading="lazy" src={imgFrame2} alt="frame 2" className="timeline-frame timeline-frame-2" />
+        <img loading="lazy" src={imgFrame3} alt="frame 3" className="timeline-frame timeline-frame-3" />
       </div>
 
       {/* Main Content Card */}
@@ -182,10 +182,11 @@ const Timeline = () => {
         </div>
 
         {/* Decorative Flower on the side */}
-        <img src={imgFlowertime} alt="decorative flower" className="timeline-flower-side" />
+        <img loading="lazy" src={imgFlowertime} alt="decorative flower" className="timeline-flower-side" />
       </div>
     </section>
   );
 };
 
 export default Timeline;
+

@@ -94,6 +94,7 @@ export default function App() {
         className="opening-canvas" 
         playsInline
         muted
+        preload="metadata"
         style={{ 
           display: animationFinished ? 'none' : 'block',
           backgroundColor: '#562124',

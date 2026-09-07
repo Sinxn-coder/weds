@@ -105,7 +105,7 @@ const SliderButton = ({ defaultText, successText, onComplete, buttonImg, textCol
       >
         {isUnlocked ? successText : defaultText}
       </div>
-      <img 
+      <img loading="lazy" 
         ref={thumbRef}
         src={buttonImg} 
         alt="Slider Thumb"
@@ -165,3 +165,4 @@ const Rsvp = () => {
 };
 
 export default Rsvp;
+

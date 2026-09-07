@@ -26,7 +26,7 @@ const Gift = () => {
     <section className="gift-section" ref={sectionRef}>
       <div className={`gift-container ${isVisible ? 'is-visible' : ''}`}>
         <div className="gift-envelope-wrap">
-          <img src={envelopeImg} alt="Envelope" className="gift-envelope-img" />
+          <img loading="lazy" src={envelopeImg} alt="Envelope" className="gift-envelope-img" />
         </div>
         <div className="gift-card-fg">
           <h2 className="gift-title">Your Presence</h2>
@@ -48,3 +48,4 @@ const Gift = () => {
 };
 
 export default Gift;
+

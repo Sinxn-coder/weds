@@ -87,7 +87,7 @@ const Reception = () => {
         playsInline
         disablePictureInPicture
         disableRemotePlayback
-        preload="auto"
+        preload="metadata"
         onCanPlay={() => forcePlay(videoRef.current)}
       >
         <source src={isMobile ? mobilebgvideo : bgvideo} type="video/mp4" />
