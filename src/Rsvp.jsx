@@ -145,7 +145,7 @@ const Rsvp = () => {
     <section className="rsvp-section">
       <div className={`rsvp-content ${isTextVisible ? 'is-visible' : ''}`} ref={textContainerRef}>
         <h2 className="rsvp-title">Kindly Rsvp</h2>
-        <h3 className="rsvp-date">BY AUGUST 31, 2026</h3>
+        <h3 className="rsvp-date">BY SEPTEMBER 30, 2026</h3>
         <p className="rsvp-text">Please let us know if you'll be able to join us on our special day.</p>
         
         <div className="sliders-wrapper">
