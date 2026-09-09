@@ -199,10 +199,10 @@ export default function App() {
         <Countdown targetDate="2026-10-11T12:30:00" />
         <Details />
         <Reception />
-        <Rsvp />
         <Timeline />
         <DressCode />
         <Gift />
+        <Rsvp />
 
       </div>
     </div>
