@@ -28,7 +28,7 @@
   position: relative;
   z-index: 2;
   width: 95%;
-  height: 88dvh;
+  min-height: 88dvh;
   max-width: 900px;
   background-color: #fbf6ef;
   border-radius: 15px;
